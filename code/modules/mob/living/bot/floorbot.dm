@@ -199,7 +199,7 @@
 		repairing = 1
 		update_icons()
 		if(F.is_plating())
-			visible_message("<span class='warning'>[src] begins to tear the floor tile from the floor!</span>")
+			visible_message(SPAN_WARN("[src] begins to tear the floor tile from the floor!"))
 			if(do_after(src, 50))
 				F.break_tile_to_plating()
 				addTiles(1)
@@ -314,7 +314,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
-		user << "<span class='warning'>You need 10 floor tiles for a floorbot.</span>"
+		user << SPAN_WARN("You need 10 floor tiles for a floorbot.")
 	return
 
 /obj/item/weapon/toolbox_tiles

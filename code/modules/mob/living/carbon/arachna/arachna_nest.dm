@@ -21,9 +21,9 @@
 				if(world.time <= buckled_mob.last_special+NEST_RESIST_TIME)
 					return
 				buckled_mob.last_special = world.time
-				buckled_mob.visible_message(\
-					"<span class='warning'>[buckled_mob.name] struggles to break free of the sticky web...</span>",\
-					"<span class='warning'>You struggle to break free from the sticky web...</span>",\
+				buckled_mob.visible_message(
+					SPAN_WARN("[buckled_mob.name] struggles to break free of the sticky web..."),
+					SPAN_WARN("You struggle to break free from the sticky web..."),
 					"<span class='notice'>You hear squelching...</span>")
 				spawn(NEST_RESIST_TIME)
 					if(user && buckled_mob && user.buckled == src)
@@ -52,10 +52,11 @@
 	if(M == usr)
 		return
 	else
-		M.visible_message(\
-			"<span class='notice'>[user.name] secretes a thick vile web, securing [M.name] into [src]!</span>",\
-			"<span class='warning'>[user.name] drenches you in a foul-smelling web, trapping you in the [src]!</span>",\
-			"<span class='notice'>You hear squelching...</span>")
+		M.visible_message(
+			"<span class='notice'>[user.name] secretes a thick vile web, securing [M.name] into [src]!</span>",
+			SPAN_WARN("[user.name] drenches you in a foul-smelling web, trapping you in the [src]!"),
+			"<span class='notice'>You hear squelching...</span>"
+		)
 	M.buckled = src
 	M.loc = src.loc
 	M.set_dir(src.dir)

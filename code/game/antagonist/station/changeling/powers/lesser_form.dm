@@ -13,20 +13,20 @@
 	if(!changeling)	return
 
 	if(src.has_brain_worms())
-		src << "<span class='warning'>We cannot perform this ability at the present time!</span>"
+		src << SPAN_WARN("We cannot perform this ability at the present time!")
 		return
 
 	var/mob/living/carbon/human/H = src
 
 	if(!istype(H) || !H.species.primitive_form)
-		src << "<span class='warning'>We cannot perform this ability in this form!</span>"
+		src << SPAN_WARN("We cannot perform this ability in this form!")
 		return
 
 	changeling.chem_charges--
 	H.remove_changeling_powers()
-	H.visible_message("<span class='warning'>[H] transforms!</span>")
+	H.visible_message(SPAN_WARN("[H] transforms!"))
 	changeling.geneticdamage = 30
-	H << "<span class='warning'>Our genes cry out!</span>"
+	H << SPAN_WARN("Our genes cry out!")
 	var/list/implants = list() //Try to preserve implants.
 	for(var/obj/item/weapon/implant/W in H)
 		implants += W
@@ -56,7 +56,7 @@
 
 	changeling.chem_charges--
 	C.remove_changeling_powers()
-	C.visible_message("<span class='warning'>[C] transforms!</span>")
+	C.visible_message(SPAN_WARN("[C] transforms!"))
 	C.dna = chosen_dna.Clone()
 
 	var/list/implants = list()

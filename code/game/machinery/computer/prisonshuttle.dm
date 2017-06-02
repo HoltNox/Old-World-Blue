@@ -53,10 +53,10 @@ var/prison_shuttle_timeleft = 0
 
 	attack_hand(var/mob/user as mob)
 		if(!src.allowed(user) && (!hacked))
-			user << "<span class='warning'>Access Denied.</span>"
+			user << SPAN_WARN("Access Denied.")
 			return
 		if(prison_break)
-			user << "<span class='warning'>Unable to locate shuttle.</span>"
+			user << SPAN_WARN("Unable to locate shuttle.")
 			return
 		if(..())
 			return
@@ -85,7 +85,7 @@ var/prison_shuttle_timeleft = 0
 
 		if (href_list["sendtodock"])
 			if (!prison_can_move())
-				usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+				usr << SPAN_WARN("The prison shuttle is unable to leave.")
 				return
 			if(!prison_shuttle_at_station|| prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 			post_signal("prison")
@@ -99,7 +99,7 @@ var/prison_shuttle_timeleft = 0
 
 		else if (href_list["sendtostation"])
 			if (!prison_can_move())
-				usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+				usr << SPAN_WARN("The prison shuttle is unable to leave.")
 				return
 			if(prison_shuttle_at_station || prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 			post_signal("prison")
@@ -171,7 +171,7 @@ var/prison_shuttle_timeleft = 0
 				if (prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 
 				if (!prison_can_move())
-					usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+					usr << SPAN_WARN("The prison shuttle is unable to leave.")
 					return
 
 				var/area/start_location = locate(/area/shuttle/prison/prison)
@@ -200,7 +200,7 @@ var/prison_shuttle_timeleft = 0
 				if (prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 
 				if (!prison_can_move())
-					usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+					usr << SPAN_WARN("The prison shuttle is unable to leave.")
 					return
 
 				var/area/start_location = locate(/area/shuttle/prison/station)

@@ -59,7 +59,7 @@
 	if(bcell)
 		user <<"<span class='notice'>The baton is [bcell.percent()]% charged.</span>"
 	else
-		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
+		user <<SPAN_WARN("The baton does not have a power source installed.")
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell))
@@ -92,9 +92,9 @@
 	else
 		status = 0
 		if(!bcell)
-			user << "<span class='warning'>[src] does not have a power source!</span>"
+			user << SPAN_WARN("[src] does not have a power source!")
 		else
-			user << "<span class='warning'>[src] is out of charge.</span>"
+			user << SPAN_WARN("[src] is out of charge.")
 	add_fingerprint(user)
 
 
@@ -139,13 +139,13 @@
 			var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 			if (affecting)
 				if(!status)
-					L.visible_message("<span class='warning'>[L] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off.</span>")
+					L.visible_message(SPAN_WARN("[L] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
 					return 1
 				else
 					H.visible_message("<span class='danger'>[L] has been prodded in the [affecting.name] with [src] by [user]!</span>")
 		else
 			if(!status)
-				L.visible_message("<span class='warning'>[L] has been prodded with [src] by [user]. Luckily it was off.</span>")
+				L.visible_message(SPAN_WARN("[L] has been prodded with [src] by [user]. Luckily it was off."))
 				return 1
 			else
 				L.visible_message("<span class='danger'>[L] has been prodded with [src] by [user]!</span>")

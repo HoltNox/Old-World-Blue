@@ -24,9 +24,9 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	if(W.attack_verb)
-		visible_message("<span class='warning'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message(SPAN_WARN("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
-		visible_message("<span class='warning'>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message(SPAN_WARN("\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]"))
 
 	var/damage = W.force / 4.0
 
@@ -69,7 +69,7 @@
 		if(istype(H) && H.species.name == "Arachna")
 			return 1
 		if(prob(50))
-			mover << "<span class='warning'>You get stuck in \the [src] for a moment.</span>"
+			mover << SPAN_WARN("You get stuck in \the [src] for a moment.")
 			return 0
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
@@ -212,7 +212,7 @@
 		icon_state = pick("cocoon1","cocoon2","cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()
-	src.visible_message("<span class='warning'>\The [src] splits open.</span>")
+	src.visible_message(SPAN_WARN("\The [src] splits open."))
 	for(var/atom/movable/A in contents)
 		A.loc = src.loc
 	return ..()

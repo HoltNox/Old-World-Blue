@@ -136,7 +136,7 @@ var/specops_shuttle_timeleft = 0
 	if (specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 	if (!specops_can_move())
-		usr << "<span class='warning'>The Special Operations shuttle is unable to leave.</span>"
+		usr << SPAN_WARN("The Special Operations shuttle is unable to leave.")
 		return
 
 	//Begin Marauder launchpad.
@@ -254,7 +254,7 @@ var/specops_shuttle_timeleft = 0
 
 /obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied.</span>"
+		user << SPAN_WARN("Access Denied.")
 		return
 
 	if(..())
@@ -306,7 +306,7 @@ var/specops_shuttle_timeleft = 0
 		if(specops_shuttle_at_station || specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
-			usr << "<span class='warning'>The Special Operations shuttle is unable to leave.</span>"
+			usr << SPAN_WARN("The Special Operations shuttle is unable to leave.")
 			return
 
 		usr << "<span class='notice'>The Special Operations shuttle will arrive on [station_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>"

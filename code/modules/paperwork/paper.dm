@@ -94,7 +94,7 @@
 	//TODO: DNA3 clown_block
 /*
 	if((CLUMSY in usr.mutations) && prob(50))
-		usr << "<span class='warning'>You cut yourself on the paper.</span>"
+		usr << SPAN_WARN("You cut yourself on the paper.")
 		return
 */
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text, MAX_NAME_LEN)
@@ -111,7 +111,7 @@
 /obj/item/weapon/paper/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		if(icon_state == "scrap")
-			user.show_message("<span class='warning'>\The [src] is already crumpled.</span>")
+			user.show_message(SPAN_WARN("\The [src] is already crumpled."))
 			return
 		//crumple dat paper
 		info = stars(info,85)
@@ -144,8 +144,10 @@
 
 /obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_sel.selecting == O_EYES)
-		user.visible_message("<span class='notice'> [user] holds up a paper and shows it to [M]. </span>",\
-			"<span class='notice'>You show the paper to [M]. </span>")
+		user.visible_message(
+			"<span class='notice'> [user] holds up a paper and shows it to [M]. </span>",
+			"<span class='notice'>You show the paper to [M]. </span>"
+		)
 		M.examinate(src)
 
 	else if(user.zone_sel.selecting == O_MOUTH) // lipstick wiping
@@ -156,8 +158,10 @@
 				H.lip_color = null
 				H.update_body()
 			else
-				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
-								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
+				user.visible_message(
+					SPAN_WARN("[user] begins to wipe [H]'s lipstick off with \the [src]."),
+					"<span class='notice'>You begin to wipe off [H]'s lipstick.</span>"
+				)
 				if (do_mob(user, H, 10))//user needs to keep their active hand, H does not.
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
@@ -367,7 +371,7 @@
 
 
 		if(fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
-			usr << "<span class='warning'>Too many fields. Sorry, you can't do this.</span>"
+			usr << SPAN_WARN("Too many fields. Sorry, you can't do this.")
 			fields = last_fields_value
 			return
 
@@ -456,7 +460,7 @@
 
 	else if(istype(P, /obj/item/weapon/pen))
 		if(icon_state == "scrap")
-			usr << "<span class='warning'>\The [src] is too crumpled to write on.</span>"
+			usr << SPAN_WARN("\The [src] is too crumpled to write on.")
 			return
 
 		var/obj/item/weapon/pen/robopen/RP = P

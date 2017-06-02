@@ -381,7 +381,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.w_uniform
 
 	if(covering && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		user << "<span class='warning'>\The [covering] is in the way.</span>"
+		user << SPAN_WARN("\The [covering] is in the way.")
 		return 0
 	return 1
 

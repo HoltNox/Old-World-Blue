@@ -8,7 +8,7 @@ mob/living/carbon/human/proc/prepare_bite()
 
 	if(!src.client.CH || src.client.CH.handler_name != "Poison Bite")
 		src.client.CH = PoolOrNew(/datum/click_handler/human/arachna_bite)
-		src << "<span class='warning'>You prepare for bite.</span>"
+		src << SPAN_WARN("You prepare for bite.")
 	else
 		src.client.CH = null
 		src << "<span class='notice'>You unprepare for bite.</span>"
@@ -30,7 +30,10 @@ mob/living/carbon/human/proc/try_bite(atom/A)
 
 	log_attack("bite and poison [key_name_admin(A)] with [I.reagents.get_reagents()]", A)
 	I.reagents.trans_to_mob(A, I.reagents.total_volume, CHEM_BLOOD)
-	visible_message("<span class='warning'>[src] bite [A]!</span>", "<span class='alium'>You bite a [A].</span>")
+	visible_message(
+		SPAN_WARN("[src] bite [A]!"),
+		"<span class='alium'>You bite a [A].</span>"
+	)
 //	src.client.CH = null
 	return 1
 
@@ -58,7 +61,10 @@ mob/living/carbon/human/proc/try_bite(atom/A)
 	if (src.bite_ready)
 		msg_admin_attack("[key_name_admin(src)] bite and poison [key_name_admin(M)] with [I.reagents.get_reagents()]", src)
 		I.reagents.trans_to_mob(M, I.reagents.total_volume, CHEM_BLOOD)
-		visible_message("<span class='warning'>[src] bite [M]!</span>", "<span class='alium'>You bite a [M].</span>")
+		visible_message(
+			SPAN_WARN("[src] bite [M]!"),
+			"<span class='alium'>You bite a [M].</span>"
+		)
 		I.bite_ready = 0
 	else
 		..()*/
@@ -126,7 +132,10 @@ mob/living/carbon/human/arachna/verb/remove_venom()
 		src << "\red You don't have enough web stored to do that."
 		return
 	I.silk = I.silk - 10
-	visible_message("<span class='warning'><B>[src] use spider power and begins build!</B></span>", "<span class='alium'>You build a [choice].</span>")
+	visible_message(
+		SPAN_WARN("<B>[src] use spider power and begins build!</B>"),
+		"<span class='alium'>You build a [choice].</span>"
+	)
 	switch(choice)
 		if("arachna nest")
 			new /obj/structure/bed/nest/arachna_nest(loc)

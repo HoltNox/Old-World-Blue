@@ -31,7 +31,7 @@
 
 /obj/machinery/pipelayer/attack_hand(mob/user as mob)
 	if(!metal&&!on)
-		user << "<span class='warning'>\The [src] doesn't work without metal.</span>"
+		user << SPAN_WARN("\The [src] doesn't work without metal.")
 		return
 	on=!on
 	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
@@ -54,7 +54,7 @@
 
 		var/result = load_metal(W)
 		if(isnull(result))
-			user << "<span class='warning'>Unable to load [W] - no metal found.</span>"
+			user << SPAN_WARN("Unable to load [W] - no metal found.")
 		else if(!result)
 			user << "<span class='notice'>\The [src] is full.</span>"
 		else

@@ -125,7 +125,7 @@
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
 		if(istype(item_in_hand,/obj/item/weapon/material/twohanded))
 			if(item_in_hand:wielded == 1)
-				usr << "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>"
+				usr << SPAN_WARN("Your other hand is too busy holding the [item_in_hand.name]")
 				return
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
@@ -210,24 +210,28 @@
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
-				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames, but to no avail!</span>",
-				"<span class='warning'>You try to pat out [src]'s flames, but to no avail! Put yourself out first!</span>")
+				M.visible_message(SPAN_WARN("[M] tries to pat out [src]'s flames, but to no avail!"),
+				SPAN_WARN("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
 			else
-				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames!</span>",
-				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
+				M.visible_message(SPAN_WARN("[M] tries to pat out [src]'s flames!"),
+				SPAN_WARN("You try to pat out [src]'s flames! Hot!"))
 				if(do_mob(M, src, 15))
 					if (prob(10) && (M.fire_stacks <= 0))
 						src.fire_stacks -= 0.5
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)
-						M.visible_message("<span class='danger'>The fire spreads from [src] to [M]!</span>",
-						"<span class='danger'>The fire spreads to you as well!</span>")
+						M.visible_message(
+							"<span class='danger'>The fire spreads from [src] to [M]!</span>",
+							"<span class='danger'>The fire spreads to you as well!</span>"
+						)
 					else
 						src.fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
 						if (src.fire_stacks <= 0)
-							M.visible_message("<span class='warning'>[M] successfully pats out [src]'s flames.</span>",
-							"<span class='warning'>You successfully pat out [src]'s flames.</span>")
+							M.visible_message(
+								SPAN_WARN("[M] successfully pats out [src]'s flames."),
+								SPAN_WARN("You successfully pat out [src]'s flames.")
+							)
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
@@ -423,7 +427,7 @@
 	if(buckled || lying)
 		return 0
 	stop_pulling()
-	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
+	src << SPAN_WARN("You slipped on [slipped_on]!")
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))

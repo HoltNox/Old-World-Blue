@@ -11,7 +11,7 @@
 
 /obj/item/clothing/accessory/holster/proc/can_holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
-		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
+		user << SPAN_WARN("There is already \a [holstered] holstered here!")
 		return 0
 	return 1
 
@@ -20,7 +20,10 @@
 		holstered = I
 		holstered.add_fingerprint(user)
 		w_class = max(w_class, holstered.w_class)
-		user.visible_message("<span class='notice'>[user] holsters \the [holstered].</span>", "<span class='notice'>You holster \the [holstered].</span>")
+		user.visible_message(
+			"<span class='notice'>[user] holsters \the [holstered].</span>",
+			"<span class='notice'>You holster \the [holstered].</span>"
+		)
 		name = "occupied [initial(name)]"
 
 /obj/item/clothing/accessory/holster/proc/clear_holster()
@@ -87,13 +90,13 @@
 			H = locate() in S.accessories
 
 	if (!H)
-		usr << "<span class='warning'>Something is very wrong.</span>"
+		usr << SPAN_WARN("Something is very wrong.")
 		return
 
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You have nothing in hand or in [src]!</span>"
+			usr << SPAN_WARN("You have nothing in hand or in [src]!")
 			return
 		H.holster(W, usr)
 	else
@@ -103,18 +106,18 @@
 ////GUNS////
 /obj/item/clothing/accessory/holster/gun/can_holster(var/obj/item/I, var/mob/living/user)
 	if (!(I.slot_flags & SLOT_HOLSTER))
-		user << "<span class='warning'>[I] won't fit in [src]!</span>"
+		user << SPAN_WARN("[I] won't fit in [src]!")
 		return 0
 	return ..()
 
 /obj/item/clothing/accessory/holster/gun/unholster(mob/user as mob)
 	if(istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
-		user << "<span class='warning'>You need an empty hand to draw \the [holstered]!</span>"
+		user << SPAN_WARN("You need an empty hand to draw \the [holstered]!")
 	else
 		if(user.a_intent == I_HURT)
 			usr.visible_message(
 				"<span class='danger'>[user] draws \the [holstered], ready to shoot!</span>",
-				"<span class='warning'>You draw \the [holstered], ready to shoot!</span>"
+				SPAN_WARN("You draw \the [holstered], ready to shoot!")
 				)
 		else
 			user.visible_message(
@@ -168,16 +171,16 @@
 
 /obj/item/clothing/accessory/holster/knife/unholster(mob/user as mob)
 	if(user.get_active_hand() && user.get_inactive_hand())
-		user << "<span class='warning'>You need an empty hand to draw \the [holstered]!</span>"
+		user << SPAN_WARN("You need an empty hand to draw \the [holstered]!")
 	else
 		user.visible_message(
 			"<span class='danger'>[user] draws \the [holstered]!</span>",
-			"<span class='warning'>You draw \the [holstered]!</span>"
+			SPAN_WARN("You draw \the [holstered]!")
 			)
 		return ..()
 
 /obj/item/clothing/accessory/holster/knife/can_holster(var/obj/item/I, var/mob/living/user)
 	if(!is_type_in_list(I, allowed))
-		user << "<span class='warning'>You can't put [I] here!</span>"
+		user << SPAN_WARN("You can't put [I] here!")
 		return 0
 	return ..()

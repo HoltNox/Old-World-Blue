@@ -132,7 +132,7 @@
 	set src in view(1)
 
 	if(!istype(usr, /mob/living))
-		usr << "<span class='warning'>You can't do that.</span>"
+		usr << SPAN_WARN("You can't do that.")
 		return
 
 	if(usr.stat)

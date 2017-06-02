@@ -196,7 +196,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			registrate_fax_department(department, src)
 	else
 		if(!department)
-			usr << "<span class='warning'>Department setting is incorrect! Need rebuild.</span>"
+			usr << SPAN_WARN("Department setting is incorrect! Need rebuild.")
 			return 0
 		if(href_list["send"])
 			if(copyitem)

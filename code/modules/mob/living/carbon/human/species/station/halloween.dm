@@ -86,7 +86,7 @@
 	applayable_organs["Right wrist"] = BP_R_HAND
 
 	if(!applayable_organs.len)
-		src << "<span class='warning'>We can't feed from this creature.</span>"
+		src << SPAN_WARN("We can't feed from this creature.")
 		return
 
 	var/body_part = input(src, "Select organ for bitten", "Where we gonna bite?") as null|anything in applayable_organs
@@ -97,9 +97,8 @@
 		return
 
 	src.visible_message(
-		"<span class='dangerous'>[src] sank \his teeth into [H] [body_part]!</span>",
-		"<span class='warning'>We sank our teeth into [H] [body_part].</span>",
-		"<span class='dangerous'>You can hear </span>"
+		SPAN_DANG("[src] sank \his teeth into [H] [body_part]!"),
+		SPAN_WARN("We sank our teeth into [H] [body_part]."),
 	)
 
 	var/obj/item/organ/external/E = H.get_organ(applayable_organs[body_part])
@@ -116,15 +115,15 @@
 			if(BLOOD_VOLUME_OKAY/100 to BLOOD_VOLUME_SAFE/100)
 				if(blood_state != BLOOD_VOLUME_OKAY)
 					blood_state = BLOOD_VOLUME_OKAY
-					src << "<span class='warning'>[H] will be okay with that blood amount.</span>"
+					src << SPAN_WARN("[H] will be okay with that blood amount.")
 			if(BLOOD_VOLUME_BAD/100 to BLOOD_VOLUME_OKAY/100)
 				if(blood_state != BLOOD_VOLUME_BAD)
 					blood_state = BLOOD_VOLUME_BAD
-					src << "<span class='warning'>[H] definitely get worse!</span>"
+					src << SPAN_WARN("[H] definitely get worse!")
 			if(BLOOD_VOLUME_SURVIVE/100 to BLOOD_VOLUME_BAD/100)
 				if(blood_state != BLOOD_VOLUME_SURVIVE)
 					blood_state = BLOOD_VOLUME_SURVIVE
-					src << "<span class='warning'>[H] can die any moment now!</span>"
+					src << SPAN_WARN("[H] can die any moment now!")
 			else
 				src << "<span class='dangerous'>[H] don't have anough blood for feed us.</span>"
 				break
@@ -132,7 +131,7 @@
 		sleep(40)
 
 	src.visible_message(
-		"<span class='warning'>[src] released [H] [body_part].</span>",
+		SPAN_WARN("[src] released [H] [body_part]."),
 		"<span class='notice'>We stop dringing [H] blood.</span>"
 	)
 	if(G)

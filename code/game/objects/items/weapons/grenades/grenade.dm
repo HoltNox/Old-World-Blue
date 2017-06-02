@@ -16,7 +16,7 @@
 	//TODO: DNA3 clown_block
 /*
 	if((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>Huh? How does this thing work?</span>"
+		user << SPAN_WARN("Huh? How does this thing work?")
 
 		activate(user)
 		add_fingerprint(user)
@@ -30,7 +30,7 @@
 	if (istype(target, /obj/item/storage)) return ..() // Trying to put it in a full container
 	if (istype(target, /obj/item/weapon/gun/grenadelauncher)) return ..()
 	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != src.loc)
-		user << "<span class='warning'>You prime the [name]! [det_time/10] seconds!</span>"
+		user << SPAN_WARN("You prime the [name]! [det_time/10] seconds!")
 		active = 1
 		icon_state = initial(icon_state) + "_active"
 		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
@@ -58,7 +58,7 @@
 /obj/item/weapon/grenade/attack_self(mob/user as mob)
 	if(!active)
 		if(clown_check(user))
-			user << "<span class='warning'>You prime \the [name]! [det_time/10] seconds!</span>"
+			user << SPAN_WARN("You prime \the [name]! [det_time/10] seconds!")
 
 			activate(user)
 			add_fingerprint(user)

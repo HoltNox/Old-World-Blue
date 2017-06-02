@@ -46,20 +46,22 @@
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
-					user << "<span class='warning'>You're going to need to remove [C.name] first.</span>"
+					user << SPAN_WARN("You're going to need to remove [C.name] first.")
 					return
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
-				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>"
+				user << SPAN_WARN("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!")
 
-			user.visible_message("<span class='notice'>\The [user] directs [src] to [M]'s eyes.</span>", \
-							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+			user.visible_message(
+				"<span class='notice'>\The [user] directs [src] to [M]'s eyes.</span>",
+				"<span class='notice'>You direct [src] to [M]'s eyes.</span>"
+			)
 			if(H != user)	//can't look into your own eyes buster
 				if(H.stat == DEAD || H.blinded)	//mob is dead or fully blind
-					user << "<span class='warning'>\The [H]'s pupils do not react to the light!</span>"
+					user << SPAN_WARN("\The [H]'s pupils do not react to the light!")
 					return
 				//TODO: DNA3 xray
 				//TODO: move to organ code
@@ -68,7 +70,7 @@
 					user << "<span class='notice'>\The [H] pupils give an eerie glow!</span>"
 				*/
 				if(vision.is_bruised())
-					user << "<span class='warning'>There's visible damage to [H]'s [vision.name]!</span>"
+					user << SPAN_WARN("There's visible damage to [H]'s [vision.name]!")
 				else if(M.eye_blurry)
 					user << "<span class='notice'>\The [H]'s pupils react slower than normally.</span>"
 				if(H.getBrainLoss() > 15)

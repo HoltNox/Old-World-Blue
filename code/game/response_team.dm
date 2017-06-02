@@ -43,7 +43,7 @@ client/verb/JoinResponseTeam()
 	set category = "IC"
 
 	if(!MayRespawn(1,5))
-		usr << "<span class='warning'>You cannot join the response team at this time.</span>"
+		usr << SPAN_WARN("You cannot join the response team at this time.")
 		return
 
 	if(isobserver(usr) || istype(usr,/mob/new_player))

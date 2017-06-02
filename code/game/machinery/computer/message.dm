@@ -14,9 +14,9 @@
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 	//Messages - Saves me time if I want to change something.
 	var/noserver = "<span class='alert'>ALERT: No server detected.</span>"
-	var/incorrectkey = "<span class='warning'>ALERT: Incorrect decryption key!</span>"
+	var/incorrectkey = SPAN_WARN("ALERT: Incorrect decryption key!")
 	var/defaultmsg = "<span class='notice'>Welcome. Please select an option.</span>"
-	var/rebootmsg = "<span class='warning'>%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!</span>"
+	var/rebootmsg = SPAN_WARN("%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!")
 	//Computer properties
 	var/screen = 0 		// 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
 	var/hacking = 0		// Is it being hacked into by the AI/Cyborg
@@ -39,7 +39,7 @@
 		return
 	if(isscrewdriver(O) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
-		user << "<span class='warning'>It is too hot to mess with!</span>"
+		user << SPAN_WARN("It is too hot to mess with!")
 		return
 
 	..()
@@ -266,10 +266,10 @@
 
 /obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
 	if(isnull(linkedServer))
-		user << "<span class='warning'>Could not complete brute-force: Linked Server Disconnected!</span>"
+		user << SPAN_WARN("Could not complete brute-force: Linked Server Disconnected!")
 	else
 		var/currentKey = src.linkedServer.decryptkey
-		user << "<span class='warning'>Brute-force completed! The key is '[currentKey]'.</span>"
+		user << SPAN_WARN("Brute-force completed! The key is '[currentKey]'.")
 	src.hacking = 0
 	src.icon_state = normal_icon
 	src.screen = 0 // Return the screen back to normal

@@ -58,7 +58,7 @@
 /obj/item/weapon/material/twohanded/mob_can_equip(M as mob, slot)
 	//Cannot equip wielded items.
 	if(wielded)
-		M << "<span class='warning'>Unwield the [base_name] first!</span>"
+		M << SPAN_WARN("Unwield the [base_name] first!")
 		return 0
 
 	return ..()
@@ -85,7 +85,7 @@
 	if(!istype(H)) return
 
 	if(H.species.is_small)
-		H << "<span class='warning'>It's too heavy for you to wield fully.</span>"
+		H << SPAN_WARN("It's too heavy for you to wield fully.")
 		return
 
 	if(wielded) //Trying to unwield it
@@ -100,7 +100,7 @@
 
 	else //Trying to wield it
 		if(H.get_inactive_hand())
-			H << "<span class='warning'>You need your other hand to be empty</span>"
+			H << SPAN_WARN("You need your other hand to be empty")
 			return
 		wield()
 		H << "<span class='notice'>You grab the [base_name] with both hands.</span>"

@@ -102,7 +102,7 @@ var/list/wood_icons = list("wood","wood-broken")
 	return
 
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	
+
 	var/temp_destroy = get_damage_temperature()
 	if(!burnt && prob(5))
 		burn_tile(exposed_temperature)
@@ -309,16 +309,16 @@ turf/simulated/floor/proc/update_icon()
 /turf/simulated/floor/proc/burn_tile(var/exposed_temperature)
 	if(istype(src,/turf/simulated/floor/engine)) return
 	if(istype(src,/turf/simulated/floor/plating/airless/asteroid)) return//Asteroid tiles don't burn
-	
+
 	var/damage_temp = get_damage_temperature()
-	
+
 	if(broken) return
 	if(burnt)
 		if(is_steel_floor() && exposed_temperature >= damage_temp) //allow upgrading from scorched tiles to damaged tiles
 			src.icon_state = "damaged[pick(1,2,3,4,5)]"
 			broken = 1
 		return
-	
+
 	if(is_steel_floor() && exposed_temperature >= T0C+300) //enough to char the floor, but not hot enough to actually burn holes in it
 		src.icon_state = "floorscorched[pick(1,2)]"
 		burnt = 1
@@ -520,7 +520,7 @@ turf/simulated/floor/proc/update_icon()
 		var/obj/item/stack/rods/R = C
 		if (is_plating())
 			if (R.get_amount() < 2)
-				user << "<span class='warning'>You need more rods.</span>"
+				user << SPAN_WARN("You need more rods.")
 				return
 			user << "\blue Reinforcing the floor..."
 			if(do_after(user, 30) && is_plating())

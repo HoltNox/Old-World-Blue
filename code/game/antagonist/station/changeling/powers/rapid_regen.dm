@@ -47,7 +47,7 @@
 			var/T = get_turf(src)
 			new /obj/effect/gibspawner/human(T)
 			visible_message(
-				"<span class='warning'>With a sickening squish, [src] reforms their whole body, casting their old parts on the floor!</span>",
+				SPAN_WARN("With a sickening squish, [src] reforms their whole body, casting their old parts on the floor!"),
 				"<span class='notice'>We reform our body.  We are whole once more.</span>",
 				"<span class='italics'>You hear organic matter ripping and tearing!</span>"
 			)

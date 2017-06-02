@@ -838,8 +838,8 @@
 				src.go_out()
 				src.log_message("[src.occupant] was ejected using the maintenance controls.")
 			else
-				user << "<span class='warning'>Your attempt is rejected.</span>"
-				src.occupant_message("<span class='warning'>An attempt to eject you was made using the maintenance controls.</span>")
+				user << SPAN_WARN("Your attempt is rejected.")
+				src.occupant_message(SPAN_WARN("An attempt to eject you was made using the maintenance controls."))
 				src.log_message("Eject attempt made using maintenance controls - rejected.")
 		return
 

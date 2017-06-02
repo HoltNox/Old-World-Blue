@@ -17,10 +17,10 @@
 
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
-		src << "<span class='warning'>We must be grabbing a creature in our active hand to transform them.</span>"
+		src << SPAN_WARN("We must be grabbing a creature in our active hand to transform them.")
 		return 0
 	if(G.state < GRAB_NECK)
-		src << "<span class='warning'>We must have a tighter grip to transform this creature.</span>"
+		src << SPAN_WARN("We must have a tighter grip to transform this creature.")
 		return 0
 
 	var/list/names = list()
@@ -42,15 +42,15 @@
 
 	var/mob/living/carbon/T = G.affecting
 	if((HUSK & T.status_flags) || !ishuman(T) || issmall(T))
-		src << "<span class='warning'>Our sting appears ineffective against its DNA.</span>"
+		src << SPAN_WARN("Our sting appears ineffective against its DNA.")
 		return 0
 	src << "<span class='notice'>We stealthily sting [T] in the neck.</span>"
 	if(!T.mind || !T.mind.changeling)
-		T.visible_message("<span class='warning'>[T] transforms!</span>")
+		T.visible_message(SPAN_WARN("[T] transforms!"))
 		T.dna = chosen_dna.Clone()
 		T.real_name = chosen_dna.real_name
 		T.UpdateAppearance()
 		domutcheck(T, null)
 		return 1
-	T << "<span class='warning'>You feel a tiny prick.</span>"
+	T << SPAN_WARN("You feel a tiny prick.")
 	return 1

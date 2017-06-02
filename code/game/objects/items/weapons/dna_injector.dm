@@ -121,7 +121,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!istype(H))
-		user << "<span class='warning'>Apparently it didn't work...</span>"
+		user << SPAN_WARN("Apparently it didn't work...")
 		return
 
 	// Used by admin log.

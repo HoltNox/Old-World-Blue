@@ -118,7 +118,7 @@
 
 /obj/item/eye_camera/proc/put_in_socket(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
 	if(target.eyecheck())
-		user << "<span class='warning'>You can't access[user == target ? "" : " [target]'s"] eye-socket.</span>"
+		user << SPAN_WARN("You can't access[user == target ? "" : " [target]'s"] eye-socket.")
 		return
 	var/obj/item/organ/internal/eyes/mechanic/cam/eyes = target.internal_organs_by_name[O_EYES]
 	if(eyes && istype(eyes))
@@ -169,13 +169,13 @@
 		owner.visible_message(
 			"<span class='notice'>You can hear something beeps in [owner] head.</span>",
 			"<span class='notice'>You successfuly enable eye-cam remote view</span>",
-			"<span class='warning'>You can hear long BEEP.</span>"
+			"<span class='notice'>You can hear long BEEP.</span>"
 		)
 	else
 		owner.visible_message(
 			"<span class='notice'>You can hear something beeps in [owner] head.</span>",
 			"<span class='notice'>You successfuly disable eye-cam remote view</span>",
-			"<span class='warning'>You can hear long BEEP.</span>"
+			"<span class='notice'>You can hear long BEEP.</span>"
 		)
 		owner.machine = src
 		owner.reset_view(linked_camera)
@@ -201,35 +201,35 @@
 		..()
 
 	if(camera)
-		user << "<span class='warning'>Eye-socket is not empty.</span>"
+		user << SPAN_WARN("Eye-socket is not empty.")
 		return
 
 	if(!owner)
 		user << "<span class='notece'>You insert [C] into eye-socket.</span>"
 	else if(user == owner)
 		user.visible_message(
-			"<span class='warning'>[user] start inserting [C] into eye-socket!</span>",
+			SPAN_WARN("[user] start inserting [C] into eye-socket!"),
 			"<span class='notice'>You start inserting [C] into your eye-socket</span>"
 		)
 		sleep(5)
 		if(usr.get_active_hand() != C)
-			user << "<span class='warning'>You need to keep [C] in active hand!</span>"
+			user << SPAN_WARN("You need to keep [C] in active hand!")
 			return
 		if(camera)
-			user << "<span class='warning'>Your eye socket is not empty!</span>"
+			user << SPAN_WARN("Your eye socket is not empty!")
 			return
 	else
 		user.visible_message(
-			"<span class='warning'>[user] try to insert [C] into [owner]'s eye-socket</span>",
+			SPAN_WARN("[user] try to insert [C] into [owner]'s eye-socket"),
 			"<span class='notice'>You try to insert [C] into [owner]'s eye-socket</span>"
 		)
 		if(do_mob(user, owner, 15))
 			if(camera)
-				user << "<span class='warning'>Eye-socket is not empty.</span>"
+				user << SPAN_WARN("Eye-socket is not empty.")
 				return
 			user.visible_message(
-				"<span class='warning'>[user] insert [C] into [owner]'s eye-socket</span>",
-				"<span class='warning'>You insert [src] into [owner]'s eye-socket</span>"
+				SPAN_WARN("[user] insert [C] into [owner]'s eye-socket"),
+				SPAN_WARN("You insert [src] into [owner]'s eye-socket")
 			)
 	user.drop_from_inventory(C, src)
 	camera = C

@@ -23,15 +23,15 @@
 		return
 
 	if(!istype(T) || T.isSynthetic())
-		src << "<span class='warning'>\The [T] is not compatible with our biology.</span>"
+		src << SPAN_WARN("\The [T] is not compatible with our biology.")
 		return 0
 
 	if(T.species.flags & NO_SCAN)
-		src << "<span class='warning'>We do not know how to parse this creature's DNA!</span>"
+		src << SPAN_WARN("We do not know how to parse this creature's DNA!")
 		return 0
 
 	if(HUSK & status_flags)
-		src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
+		src << SPAN_WARN("This creature's DNA is ruined beyond useability!")
 		return 0
 
 	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages)

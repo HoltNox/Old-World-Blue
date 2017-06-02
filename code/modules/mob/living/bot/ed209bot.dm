@@ -26,7 +26,7 @@
 		icon_state = "ed209[on]"
 
 /mob/living/bot/secbot/ed209/explode()
-	visible_message("<span class='warning'>[src] blows apart!</span>")
+	visible_message(SPAN_WARN("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
@@ -154,7 +154,7 @@
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
-					user << "<span class='warning'>You need one coil of wire to wire [src].</span>"
+					user << SPAN_WARN("You need one coil of wire to wire [src].")
 					return
 				user << "<span class='notice'>You start to wire [src].</span>"
 				if(do_after(user, 40) && build_step == 6)

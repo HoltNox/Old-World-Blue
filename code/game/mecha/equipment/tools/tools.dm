@@ -22,13 +22,13 @@
 			if(O.buckled_mob)
 				return
 			if(locate(/mob/living) in O)
-				occupant_message("<span class='warning'>You can't load living things into the cargo compartment.</span>")
+				occupant_message(SPAN_WARN("You can't load living things into the cargo compartment."))
 				return
 			if(O.anchored)
-				occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+				occupant_message(SPAN_WARN("[target] is firmly secured."))
 				return
 			if(cargo_holder.cargo.len >= cargo_holder.cargo_capacity)
-				occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
+				occupant_message(SPAN_WARN("Not enough room in cargo compartment."))
 				return
 
 			occupant_message("You lift [target] and start to load it into cargo compartment.")
@@ -46,7 +46,7 @@
 					occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 				else
-					occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
+					occupant_message(SPAN_WARN("You must hold still while handling objects."))
 					O.anchored = initial(O.anchored)
 
 		//attacking
@@ -57,8 +57,8 @@
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force/2))
 				M.updatehealth()
-				occupant_message("<span class='warning'>You squeeze [target] with [src.name]. Something cracks.</span>")
-				chassis.visible_message("<span class='warning'>[chassis] squeezes [target].</span>")
+				occupant_message(SPAN_WARN("You squeeze [target] with [src.name]. Something cracks."))
+				chassis.visible_message(SPAN_WARN("[chassis] squeezes [target]."))
 			else
 				step_away(M,chassis)
 				occupant_message("You push [target] out of the way.")
@@ -84,7 +84,10 @@
 			if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>[chassis] starts to drill [target]</span>", "<span class='warning'>You hear the drill.</span>")
+		chassis.visible_message(
+			"<span class='danger'>[chassis] starts to drill [target]</span>",
+			SPAN_WARN("You hear the drill.")
+		)
 		occupant_message("<span class='danger'>You start to drill [target]</span>")
 		playsound(src,'sound/mecha/mechdrill.ogg',100,1)
 		var/T = chassis.loc
@@ -94,7 +97,7 @@
 				if(istype(target, /turf/simulated/wall))
 					var/turf/simulated/wall/W = target
 					if(W.reinf_material)
-						occupant_message("<span class='warning'>[target] is too durable to drill through.</span>")
+						occupant_message(SPAN_WARN("[target] is too durable to drill through."))
 					else
 						log_message("Drilled through [target]")
 						target.ex_act(2)
@@ -140,7 +143,10 @@
 			if(target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>[chassis] starts to drill [target]</span>", "<span class='warning'>You hear the drill.</span>")
+		chassis.visible_message(
+			"<span class='danger'>[chassis] starts to drill [target]</span>",
+			SPAN_WARN("You hear the drill.")
+		)
 		occupant_message("<span class='danger'>You start to drill [target]</span>")
 		playsound(src,'sound/mecha/mechdrill.ogg',100,1)
 		var/T = chassis.loc
@@ -209,7 +215,7 @@
 				return
 
 			if (src.reagents.total_volume < 1)
-				occupant_message("<span class='warning'>\The [src] is empty.</span>")
+				occupant_message(SPAN_WARN("\The [src] is empty."))
 				return
 
 			playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
@@ -442,7 +448,7 @@
 			last_fired = world.time
 		else
 			if (world.time % 3)
-				occupant_message("<span class='warning'>[src] is not ready to fire again!</span>")
+				occupant_message(SPAN_WARN("[src] is not ready to fire again!"))
 			return 0
 
 		switch(mode)
@@ -884,7 +890,7 @@
 			var/result = load_fuel(target)
 			var/message
 			if(isnull(result))
-				message = "<span class='warning'>[fuel] traces in target minimal. [target] cannot be used as fuel.</span>"
+				message = SPAN_WARN("[fuel] traces in target minimal. [target] cannot be used as fuel.")
 			else if(!result)
 				message = "Unit is full."
 			else
@@ -909,7 +915,10 @@
 	attackby(weapon,mob/user)
 		var/result = load_fuel(weapon)
 		if(isnull(result))
-			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.","<span class='warning'>[fuel] traces minimal. [weapon] cannot be used as fuel.</span>")
+			user.visible_message(
+				"[user] tries to shove [weapon] into [src]. What a dumb-ass.",
+				SPAN_WARN("[fuel] traces minimal. [weapon] cannot be used as fuel.")
+			)
 		else if(!result)
 			user << "Unit is full."
 		else
@@ -1035,12 +1044,12 @@
 							chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 							chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 						else
-							chassis.occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
+							chassis.occupant_message(SPAN_WARN("You must hold still while handling objects."))
 							O.anchored = initial(O.anchored)
 				else
-					chassis.occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
+					chassis.occupant_message(SPAN_WARN("Not enough room in cargo compartment."))
 			else
-				chassis.occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+				chassis.occupant_message(SPAN_WARN("[target] is firmly secured."))
 
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
@@ -1093,7 +1102,7 @@
 			log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
-			user << "<span class='warning'>[src.occupant] was faster. Try better next time, loser.</span>"
+			user << SPAN_WARN("[src.occupant] was faster. Try better next time, loser.")
 	else
 		user << "You stop entering the exosuit."
 
@@ -1201,11 +1210,11 @@
 		if (OCCUPIED)
 			usr << "<span class='danger'>The passenger compartment is already occupied!</span>"
 		if (LOCKED)
-			usr << "<span class='warning'>The passenger compartment hatch is locked!</span>"
+			usr << SPAN_WARN("The passenger compartment hatch is locked!")
 		if (OCCUPIED|LOCKED)
 			usr << "<span class='danger'>All of the passenger compartments are already occupied or locked!</span>"
 		if (0)
-			usr << "<span class='warning'>\The [src] doesn't have a passenger compartment.</span>"
+			usr << SPAN_WARN("\The [src] doesn't have a passenger compartment.")
 
 /obj/item/mecha_parts/mecha_equipment/jetpack
 	name = "jetpack"

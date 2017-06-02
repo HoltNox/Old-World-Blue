@@ -21,7 +21,7 @@ var/global/datum/controller/occupations/job_master
 		occupations_by_name.Cut()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
-			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
+			world << SPAN_WARN("Error setting up jobs, no job datums found!")
 			return 0
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
@@ -268,7 +268,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in player_list)
 			if(jobban_isbanned(player, player.client.prefs.species))
 				player.ready = 0
-				player << "<span class='warning'>You are banned from playing as [player.client.prefs.species]</span>"
+				player << SPAN_WARN("You are banned from playing as [player.client.prefs.species]")
 				continue
 			if(player.ready && player.mind && !player.mind.assigned_role)
 				unassigned += player

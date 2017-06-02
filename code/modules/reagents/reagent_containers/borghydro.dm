@@ -56,7 +56,7 @@
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
-		user << "<span class='warning'>The injector is empty.</span>"
+		user << SPAN_WARN("The injector is empty.")
 		return
 
 	if(M.can_inject(user, 1))

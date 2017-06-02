@@ -120,7 +120,7 @@
 			else if(istype(W, /obj/item/stack/rods) && !secure)
 				var/obj/item/stack/rods/R = W
 				if(R.get_amount() < 4)
-					user << "<span class='warning'>You need more rods to do this.</span>"
+					user << SPAN_WARN("You need more rods to do this.")
 					return
 				user << "<span class='notice'>You start to reinforce the windoor with rods.</span>"
 

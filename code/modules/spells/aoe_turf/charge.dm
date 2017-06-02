@@ -47,7 +47,7 @@
 	if(istype(target, /obj/item/weapon/spellbook/oneuse))
 		var/obj/item/weapon/spellbook/oneuse/I = target
 		if(prob(50))
-			I.visible_message("<span class='warning'>[I] catches fire!</span>")
+			I.visible_message(SPAN_WARN("[I] catches fire!"))
 			qdel(I)
 		else
 			I.used = 0

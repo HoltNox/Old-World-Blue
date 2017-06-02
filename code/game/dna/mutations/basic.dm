@@ -26,7 +26,7 @@ var/list/all_mutations = new
 	H.mutations.Remove(src)
 	if(deactivation_messages && deactivation_messages.len)
 		var/msg = pick(deactivation_messages)
-		H << "<span class='warning'>[msg]</span>"
+		H << SPAN_WARN(msg)
 
 /datum/mutation/proc/on_mob_life(var/mob/living/carbon/human)
 	return

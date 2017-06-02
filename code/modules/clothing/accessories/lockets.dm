@@ -55,7 +55,7 @@
 		return
 	else if(isscrewdriver(O))
 		if(!open)
-			user << "<span class='warning'>You need to open [src] first</span>"
+			user << SPAN_WARN("You need to open [src] first")
 			return
 		if(held)
 			user << "<span class='notice'>You eject [held] out of [src]!</span>"

@@ -487,7 +487,7 @@
 		if(status == ROLL_DOWN)
 			usr << "<span class='notice'>You roll down your [src].</span>"
 		else
-			usr << "<span class='warning'>You can't roll down [src].</span>"
+			usr << SPAN_WARN("You can't roll down [src].")
 	else
 		usr << "<span class='notice'>You roll up your [src].</span>"
 		status = ROLL_NONE
@@ -507,7 +507,7 @@
 		if(status == ROLL_SLEV)
 			usr << "<span class='notice'>You roll up your [src]'s sleeves.</span>"
 		else
-			usr << "<span class='warning'>You can't roll up your [src]'s sleeves.</span>"
+			usr << SPAN_WARN("You can't roll up your [src]'s sleeves.")
 	else
 		status = ROLL_NONE
 		usr << "<span class='notice'>You roll down your [src]'s sleeves.</span>"

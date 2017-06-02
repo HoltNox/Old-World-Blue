@@ -31,7 +31,7 @@
 
 		if (isrobot(usr) || src.locked)
 			if(istype(O, /obj/item/device/multitool))
-				user << "<span class='warning'>Resetting circuitry...</span>"
+				user << SPAN_WARN("Resetting circuitry...")
 				playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 				if(do_after(user, 20))
 					src.locked = 0
@@ -62,7 +62,7 @@
 		if (istype(O, /obj/item/weapon/material/twohanded/fireaxe) && src.localopened)
 			if(!fireaxe)
 				if(O:wielded)
-					user << "<span class='warning'>Unwield the axe first.</span>"
+					user << SPAN_WARN("Unwield the axe first.")
 					return
 				fireaxe = O
 				user.remove_from_mob(O)
@@ -90,7 +90,7 @@
 					spawn(10) update_icon()
 					return
 				else
-					user << "<span class='warning'>Resetting circuitry...</span>"
+					user << SPAN_WARN("Resetting circuitry...")
 					sleep(50)
 					src.locked = 1
 					user << "<span class='notice'>You re-enable the locking modules.</span>"
@@ -118,7 +118,7 @@
 			hasaxe = 1
 
 		if(src.locked)
-			user <<"<span class='warning'>The cabinet won't budge!</span>"
+			user <<SPAN_WARN("The cabinet won't budge!")
 			return
 		if(localopened)
 			if(fireaxe)
@@ -163,7 +163,7 @@
 
 		if (isrobot(usr) || src.locked || src.smashed)
 			if(src.locked)
-				usr << "<span class='warning'>The cabinet won't budge!</span>"
+				usr << SPAN_WARN("The cabinet won't budge!")
 			else if(src.smashed)
 				usr << "<span class='notice'>The protective glass is broken!</span>"
 			return
@@ -191,12 +191,12 @@
 
 	attack_ai(mob/user as mob)
 		if(src.smashed)
-			user << "<span class='warning'>The security of the cabinet is compromised.</span>"
+			user << SPAN_WARN("The security of the cabinet is compromised.")
 			return
 		else
 			locked = !locked
 			if(locked)
-				user << "<span class='warning'>Cabinet locked.</span>"
+				user << SPAN_WARN("Cabinet locked.")
 			else
 				user << "<span class='notice'>Cabinet unlocked.</span>"
 			return

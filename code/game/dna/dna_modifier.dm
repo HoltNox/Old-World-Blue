@@ -91,10 +91,10 @@
 		usr << "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>"
 		return
 	if (src.occupant)
-		usr << "<span class='warning'>The scanner is already occupied!</span>"
+		usr << SPAN_WARN("The scanner is already occupied!")
 		return
 	if (usr.abiotic())
-		usr << "<span class='warning'>The subject cannot have abiotic items on.</span>"
+		usr << SPAN_WARN("The subject cannot have abiotic items on.")
 		return
 	usr.stop_pulling()
 	put_in(usr)
@@ -154,13 +154,13 @@
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		user << "<span class='warning'>The scanner is already occupied!</span>"
+		user << SPAN_WARN("The scanner is already occupied!")
 		return
 	if (target.abiotic())
-		user << "<span class='warning'>The subject cannot have abiotic items on.</span>"
+		user << SPAN_WARN("The subject cannot have abiotic items on.")
 		return
 	if (target.buckled)
-		user << "<span class='warning'>Unbuckle the subject before attempting to move them.</span>"
+		user << SPAN_WARN("Unbuckle the subject before attempting to move them.")
 		return
 	user.visible_message("<span class='notice'>\The [user] begins placing \the [target] into \the [src].</span>", "<span class='notice'>You start placing \the [target] into \the [src].</span>")
 	if(!do_after(user, 30, src))

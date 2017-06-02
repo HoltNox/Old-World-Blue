@@ -176,7 +176,7 @@ var/list/slot_equipment_priority = list(
 
 	var/slot = get_inventory_slot(I)
 	if(!slot || !I.mob_can_unequip(src, slot))
-		usr << "<span class='warning'>You can't unequip [I]!</span>"
+		usr << SPAN_WARN("You can't unequip [I]!")
 		return 0
 
 	drop_from_inventory(I, Target)

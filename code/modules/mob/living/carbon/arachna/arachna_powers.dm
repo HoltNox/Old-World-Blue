@@ -341,10 +341,10 @@
 	var/mob/living/carbon/human/M = src
 	var/obj/item/organ/internal/arachna/silk_gland/P = M.internal_organs_by_name["silk_gland"]
 	if(!P)
-		src << "<span class='warning'>Problem witch silk gland.</span>"
+		src << SPAN_WARN("Problem witch silk gland.")
 		return 0
 	else if (P.silk < needweb)
-		src << "<span class='warning'>Need more silk.</span>"
+		src << SPAN_WARN("Need more silk.")
 		return 0
 	P.silk -= needweb
 //	src << "[src] you pass!"
@@ -388,7 +388,7 @@
 
 	if(!src.client.CH || src.client.CH.handler_name != "Arachna Jump")
 		src.client.CH = PoolOrNew(/datum/click_handler/human/arachna_leap)
-		src << "<span class='warning'>You prepare for jump.</span>"
+		src << SPAN_WARN("You prepare for jump.")
 	else
 		src.client.CH = null
 		src << "<span class='notice'>You unprepare for jump.</span>"
@@ -440,7 +440,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		src << "<span class='warning'>You miss!</span>"
+		src << SPAN_WARN("You miss!")
 		return 1
 
 	T.Weaken(3)
@@ -453,7 +453,7 @@
 		else
 			use_hand = "right"
 
-	src.visible_message("<span class='warning'><b>\The [src]</b> seizes [T] aggressively!</span>")
+	src.visible_message(SPAN_WARN("<b>\The [src]</b> seizes [T] aggressively!"))
 
 	var/obj/item/weapon/grab/G = new(src,T)
 	if(use_hand == "left")

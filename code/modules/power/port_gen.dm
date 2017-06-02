@@ -140,7 +140,7 @@
 	if(.<=4)
 		user << "\The [src] appears to be producing [power_gen*power_output] W."
 		user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken()) user << "<span class='warning'>\The [src] seems to have broken down.</span>"
+	if(IsBroken()) user << SPAN_WARN("\The [src] seems to have broken down.")
 	if(overheating) user << "<span class='danger'>\The [src] is overheating!</span>"
 
 /obj/machinery/power/port_gen/pacman/HasFuel()

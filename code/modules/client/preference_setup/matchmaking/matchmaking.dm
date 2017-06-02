@@ -22,7 +22,7 @@ var/global/datum/matchmaker/matchmaker = new()
 		if(R.other && !R.finalized)
 			to_warn |= R.holder.current
 	for(var/mob/M in to_warn)
-		M << "<span class='warning'>You have new connections. Use \"See Relationship Info\" to view and finalize them.</span>"
+		M << SPAN_WARN("You have new connections. Use \"See Relationship Info\" to view and finalize them.")
 
 /datum/matchmaker/proc/get_relationships(datum/mind/M)
 	. = list()
@@ -96,8 +96,8 @@ var/global/datum/matchmaker/matchmaker = new()
 	return 1
 
 /datum/relation/proc/sever()
-	holder.current << "<span class='warning'>Your connection with [other.holder] is no more.</span>"
-	other.holder.current << "<span class='warning'>Your connection with [holder] is no more.</span>"
+	holder.current << SPAN_WARN("Your connection with [other.holder] is no more.")
+	other.holder.current << SPAN_WARN("Your connection with [holder] is no more.")
 	other.other = null
 	matchmaker.relations -= other
 	matchmaker.relations -= src

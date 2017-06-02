@@ -342,7 +342,7 @@
 		if(M)
 			M << "<span class='notice'>You switch \the [src] off.</span>"
 		else if(T)
-			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
+			T.visible_message(SPAN_WARN("\The [src] turns off."))
 		src.force = 3
 		src.damtype = "brute"
 		src.w_class = initial(src.w_class)

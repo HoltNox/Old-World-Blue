@@ -293,10 +293,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Re-enter Corpse"
 	if(!client)	return
 	if(!(mind && mind.current && can_reenter_corpse))
-		src << "<span class='warning'>You have no body.</span>"
+		src << SPAN_WARN("You have no body.")
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
-		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
+		usr << SPAN_WARN("Another consciousness is in your body... it is resisting you.")
 		return
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/found_rune
@@ -305,7 +305,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				found_rune = 1
 				break
 		if(!found_rune)
-			usr << "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>"
+			usr << SPAN_WARN("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.")
 			return
 	mind.current.ajourn=0
 	mind.current.key = key
@@ -389,7 +389,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!L || !L.len)
 		if(holyblock)
-			usr << "<span class='warning'>This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!</span>"
+			usr << SPAN_WARN("This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!")
 		else
 			usr << "No area available."
 
@@ -412,7 +412,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/targetloc = get_turf(target)
 	if(check_holy(targetloc))
-		usr << "<span class='warning'>You cannot follow a mob standing on holy grounds!</span>"
+		usr << SPAN_WARN("You cannot follow a mob standing on holy grounds!")
 		return
 	if(target != src)
 		if(following && following == target)
@@ -554,11 +554,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	if(config.disable_player_mice)
-		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
+		src << SPAN_WARN("Spawning as a mouse is currently disabled.")
 		return
 
 	if(jobban_isbanned(src,"mouse"))
-		src << "<span class='warning'>You can't play as mouse (banned).</span>"
+		src << SPAN_WARN("You can't play as mouse (banned).")
 		return
 
 	if(!MayRespawn(1, config.respawn_time_mouse))
@@ -566,7 +566,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/T = get_turf(src)
 	if(!T || isAdminLevel(T.z))
-		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
+		src << SPAN_WARN("You may not spawn as a mouse on this Z-level.")
 		return
 
 	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
@@ -584,7 +584,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		vent_found = pick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
-		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
+		src << SPAN_WARN("Unable to find any unwelded vents to spawn mice at.")
 
 	if(host)
 		if(config.uneducated_mice)
@@ -655,7 +655,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		T = get_step(T,text2dir(direction))
 
 	if (!istype(T))
-		src << "<span class='warning'>You cannot doodle there.</span>"
+		src << SPAN_WARN("You cannot doodle there.")
 		return
 
 	if(!choice || choice.amount == 0 || !(src.Adjacent(choice)))
@@ -667,7 +667,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
 	if (num_doodles > 4)
-		src << "<span class='warning'>There is no space to write on!</span>"
+		src << SPAN_WARN("There is no space to write on!")
 		return
 
 	var/max_length = 50
@@ -678,7 +678,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 		if (length(message) > max_length)
 			message += "-"
-			src << "<span class='warning'>You ran out of blood to write with!</span>"
+			src << SPAN_WARN("You ran out of blood to write with!")
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
 		W.basecolor = doodle_color
@@ -701,15 +701,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		verbs += /mob/observer/dead/proc/ghost_whisper
 		src << "<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>"
 	if(src.invisibility != 0)
-		user.visible_message( \
-			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
-			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
+		user.visible_message(
+			SPAN_WARN("\The [user] drags ghost, [src], to our plane of reality!"),
+			SPAN_WARN("You drag [src] to our plane of reality!")
 		)
 		toggle_visibility(1)
 	else
-		user.visible_message ( \
-			"<span class='warning'>\The [user] just tried to smash \his book into that ghost!  It's not very effective.</span>", \
-			"<span class='warning'>You get the feeling that the ghost can't become any more visible.</span>" \
+		user.visible_message (
+			SPAN_WARN("\The [user] just tried to smash \his book into that ghost!  It's not very effective."),
+			SPAN_WARN("You get the feeling that the ghost can't become any more visible.")
 		)
 
 /mob/observer/dead/proc/toggle_icon(var/icon)
@@ -810,11 +810,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
-			src << "<span class='warning'>Your non-dead body prevent you from respawning.</span>"
+			src << SPAN_WARN("Your non-dead body prevent you from respawning.")
 		return 0
 	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
 		if(feedback)
-			src << "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>"
+			src << SPAN_WARN("antagHUD restrictions prevent you from respawning.")
 		return 0
 
 	var/is_admin = check_rights(0, 0)
@@ -867,8 +867,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)
 		if(msg)
 			log_say("SpectralWhisper: [key_name(usr)]->[M.key] : [msg]")
-			M << "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>"
-			src << "<span class='warning'> You said: '[msg]' to [M].</span>"
+			M << SPAN_WARN(" You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font>")
+			src << SPAN_WARN(" You said: '[msg]' to [M].")
 		else
 			return
 		return 1

@@ -36,7 +36,7 @@
 		if(ismob(target))
 
 			var/time = 20 //2/3rds the time of a syringe
-			user.visible_message("<span class='warning'>[user] is trying to squirt something into [target]'s eyes!</span>")
+			user.visible_message(SPAN_WARN("[user] is trying to squirt something into [target]'s eyes!"))
 
 			if(!do_mob(user, target, time))
 				return
@@ -57,7 +57,10 @@
 
 				if(safe_thing)
 					trans = reagents.trans_to_obj(safe_thing, amount_per_transfer_from_this)
-					user.visible_message("<span class='warning'>[user] tries to squirt something into [target]'s eyes, but fails!</span>", "<span class='notice'>You transfer [trans] units of the solution.</span>")
+					user.visible_message(
+						SPAN_WARN("[user] tries to squirt something into [target]'s eyes, but fails!"),
+						"<span class='notice'>You transfer [trans] units of the solution.</span>"
+					)
 					return
 
 			var/mob/living/M = target
@@ -68,7 +71,10 @@
 				"used [name] (reagents: [contained]) for  squirted"
 			)
 			trans = reagents.trans_to_mob(target, reagents.total_volume, CHEM_INGEST)
-			user.visible_message("<span class='warning'>[user] squirts something into [target]'s eyes!</span>", "<span class='notice'>You transfer [trans] units of the solution.</span>")
+			user.visible_message(
+				SPAN_WARN("[user] squirts something into [target]'s eyes!"),
+				"<span class='notice'>You transfer [trans] units of the solution.</span>"
+			)
 			return
 
 		else

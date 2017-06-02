@@ -268,11 +268,11 @@
 		if(istype(AM,/obj/item))
 			var/obj/item/O = AM
 			if(O.w_class > can_pull_size)
-				src << "<span class='warning'>You are too small to pull that.</span>"
+				src << SPAN_WARN("You are too small to pull that.")
 				return
 		else
 			if(!can_pull_mobs)
-				src << "<span class='warning'>You are too small to pull that.</span>"
+				src << SPAN_WARN("You are too small to pull that.")
 				return
 	..()
 

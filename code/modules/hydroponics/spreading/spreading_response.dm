@@ -45,19 +45,19 @@
 					buckled_mob.visible_message(\
 						"<span class='notice'>[user.name] frees [buckled_mob.name] from \the [src].</span>",\
 						"<span class='notice'>[user.name] frees you from \the [src].</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
+						SPAN_WARN("You hear shredding and ripping."))
 				else
 					buckled_mob.visible_message(\
 						"<span class='notice'>[buckled_mob.name] struggles free of \the [src].</span>",\
 						"<span class='notice'>You untangle \the [src] from around yourself.</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
+						SPAN_WARN("You hear shredding and ripping."))
 			unbuckle()
 		else
 			var/text = pick("rip","tear","pull")
 			user.visible_message(\
 				"<span class='notice'>[user.name] [text]s at \the [src].</span>",\
 				"<span class='notice'>You [text] at \the [src].</span>",\
-				"<span class='warning'>You hear shredding and ripping.</span>")
+				SPAN_WARN("You hear shredding and ripping."))
 	return
 
 /obj/effect/plant/proc/entangle(var/mob/living/victim)

@@ -850,13 +850,13 @@
 		)
 	else if (user.a_intent == I_HURT)
 		user.visible_message(
-			"<span class='warning'><b>[user]</b> punches [src]!</span>",
-			"<span class='warning'>You punch [src]!</span>"
+			SPAN_WARN("<b>[user]</b> punches [src]!"),
+			SPAN_WARN("You punch [src]!")
 		)
 	else if (user.a_intent == I_GRAB)
 		user.visible_message(
-			"<span class='warning'><b>[user]</b> attempts to strangle [src]!</span>",
-			"<span class='warning'>You attempt to strangle [src]!</span>"
+			SPAN_WARN("<b>[user]</b> attempts to strangle [src]!"),
+			SPAN_WARN("You attempt to strangle [src]!")
 		)
 	else
 		user.visible_message(
@@ -913,13 +913,13 @@
 		)
 	else if (user.a_intent == I_HURT)
 		user.visible_message(
-			"<span class='warning'><b>[user]</b> punches [src]!</span>",
-			"<span class='warning'>You punch [src]!</span>"
+			SPAN_WARN("<b>[user]</b> punches [src]!"),
+			SPAN_WARN("You punch [src]!")
 		)
 	else if (user.a_intent == I_GRAB)
 		user.visible_message(
-			"<span class='warning'><b>[user]</b> attempts to strangle [src]!</span>",
-			"<span class='warning'>You attempt to strangle [src]!</span>"
+			SPAN_WARN("<b>[user]</b> attempts to strangle [src]!"),
+			SPAN_WARN("You attempt to strangle [src]!")
 		)
 	else
 		user.visible_message(

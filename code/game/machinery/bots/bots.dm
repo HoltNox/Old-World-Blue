@@ -36,7 +36,7 @@
 	if(locked)
 		locked = 0
 		emagged = 1
-		user << "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>"
+		user << SPAN_WARN("You short out [src]'s maintenance hatch lock.")
 		log_and_message_admins("emagged [src]'s maintenance hatch lock")
 	if(!locked && open)
 		emagged = 2
@@ -46,7 +46,7 @@
 	. = ..(user)
 	if (src.health < maxhealth)
 		if (src.health > maxhealth/3)
-			user << "<span class='warning'>[src]'s parts look loose.</span>"
+			user << SPAN_WARN("[src]'s parts look loose.")
 		else
 			user << "<span class='danger'>[src]'s parts look very loose!</span>"
 	return

@@ -39,10 +39,10 @@
 
 			var/obj/item/organ/internal/brain/B = O
 			if(B.health <= 0)
-				user << "<span class='warning'>That brain is well and truly dead.</span>"
+				user << SPAN_WARN("That brain is well and truly dead.")
 				return
 			else if(!B.brainmob)
-				user << "<span class='warning'>You aren't sure where this brain came from, but you're pretty sure it's useless.</span>"
+				user << SPAN_WARN("You aren't sure where this brain came from, but you're pretty sure it's useless.")
 				return
 
 			user.visible_message("<span class='notice'>\The [user] sticks \a [O] into \the [src].</span>")
@@ -68,7 +68,7 @@
 				locked = !locked
 				user << "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>"
 			else
-				user << "<span class='warning'>Access denied.</span>"
+				user << SPAN_WARN("Access denied.")
 			return
 		if(brainmob)
 			O.attack(brainmob, user)//Oh noooeeeee
@@ -86,9 +86,9 @@
 	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
 	attack_self(mob/user as mob)
 		if(!brainmob)
-			user << "<span class='warning'>You upend the MMI, but there's nothing in it.</span>"
+			user << SPAN_WARN("You upend the MMI, but there's nothing in it.")
 		else if(locked)
-			user << "<span class='warning'>You upend the MMI, but the brain is clamped into place.</span>"
+			user << SPAN_WARN("You upend the MMI, but the brain is clamped into place.")
 		else
 			user << "<span class='notice'>You upend the MMI, spilling the brain onto the floor.</span>"
 			var/obj/item/organ/internal/brain/brain

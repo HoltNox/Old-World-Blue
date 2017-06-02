@@ -128,7 +128,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(istype(W, /obj/item/weapon/wirecutters))
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
-			user << "<span class='warning'>You must cut this cable from above.</span>"
+			user << SPAN_WARN("You must cut this cable from above.")
 			return
 ///// Z-Level Stuff
 		if(breaker_box)
@@ -143,8 +143,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		else
 			new/obj/item/stack/cable_coil(T, 1, color)
 
-		for(var/mob/O in viewers(src, null))
-			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
+		visible_message(SPAN_WARN("[user] cuts the cable."))
 
 ///// Z-Level Stuff
 		if(src.d1 == 11 || src.d2 == 11)
@@ -172,10 +171,10 @@ By design, d1 is the smallest direction and d2 is the highest
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
+			user << SPAN_WARN("[powernet.avail]W in power network.")
 
 		else
-			user << "<span class='warning'>The cable is not powered.</span>"
+			user << SPAN_WARN("The cable is not powered.")
 
 		shock(user, 5, 0.2)
 
@@ -516,7 +515,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.zone_sel.selecting)
 		if(!S)
-			user << "<span class='warning'>[M] miss that body part!</span>"
+			user << SPAN_WARN("[M] miss that body part!")
 			return
 
 		if(S.robotic<ORGAN_ROBOT || user.a_intent != "help")
@@ -665,14 +664,14 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				user << "<span class='warning'>There's already a cable at that position.</span>"
+				user << SPAN_WARN("There's already a cable at that position.")
 				return
 ///// Z-Level Stuff
 		// check if the target is open space
 		if(istype(F, /turf/simulated/floor/open))
 			for(var/obj/structure/cable/LC in F)
 				if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
-					user << "<span class='warning'>There's already a cable at that position.</span>"
+					user << SPAN_WARN("There's already a cable at that position.")
 					return
 
 			var/turf/simulated/floor/open/temp = F

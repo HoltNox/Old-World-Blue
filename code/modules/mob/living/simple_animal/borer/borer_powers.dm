@@ -347,7 +347,7 @@
 		return
 
 	verbs -= /mob/living/carbon/human/proc/jumpstart
-	visible_message("<span class='warning'>With a hideous, rattling moan, [src] shudders back to life!</span>")
+	visible_message(SPAN_WARN("With a hideous, rattling moan, [src] shudders back to life!"))
 
 	rejuvenate()
 	vessel.add_reagent("blood",560-vessel.total_volume)

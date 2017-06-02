@@ -62,7 +62,7 @@
 /obj/item/weapon/pen/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M))
 		return
-	user << "<span class='warning'>You stab [M] with the pen.</span>"
+	user << SPAN_WARN("You stab [M] with the pen.")
 //	M << "\red You feel a tiny prick!" //That's a whole lot of meta!
 	admin_attack_log(user, M,
 		"Used the [name] to stab [key_name(M)]",

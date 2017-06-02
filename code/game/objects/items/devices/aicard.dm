@@ -68,11 +68,11 @@
 			flush = 0
 	if (href_list["radio"])
 		carded_ai.aiRadio.disabledAi = text2num(href_list["radio"])
-		carded_ai << "<span class='warning'>Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!</span>"
+		carded_ai << SPAN_WARN("Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!")
 		user << "<span class='notice'>You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver.</span>"
 	if (href_list["wireless"])
 		carded_ai.control_disabled = text2num(href_list["wireless"])
-		carded_ai << "<span class='warning'>Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!</span>"
+		carded_ai << SPAN_WARN("Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!")
 		user << "<span class='notice'>You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface.</span>"
 		update_icon()
 	return 1

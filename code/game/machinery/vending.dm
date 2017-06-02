@@ -417,7 +417,7 @@
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-				usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
+				usr << SPAN_WARN("Access denied.")	//Unless emagged of course
 				flick(icon_deny,src)
 				return
 
@@ -453,7 +453,7 @@
 
 /obj/machinery/vending/proc/vend(var/datum/stored_items/vending_products/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-		usr << "<span class='warning'>Access denied.</span>"	//Unless emagged of course
+		usr << SPAN_WARN("Access denied.")	//Unless emagged of course
 		flick(src.icon_deny,src)
 		return
 	src.vend_ready = 0 //One thing at a time!!
@@ -578,7 +578,7 @@
 		return 0
 
 	dispensed_item.forceMove(get_turf(src))
-	visible_message("<span class='warning'>\The [src] shudders and \a [dispensed_item] falls out!</span>")
+	visible_message(SPAN_WARN("\The [src] shudders and \a [dispensed_item] falls out!"))
 	return 1
 
 /*

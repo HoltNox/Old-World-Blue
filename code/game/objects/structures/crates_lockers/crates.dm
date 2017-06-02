@@ -148,7 +148,7 @@
 		user << "<span class='notice'>Close the crate first.</span>"
 		return
 	if(src.broken)
-		user << "<span class='warning'>The crate appears to be broken.</span>"
+		user << SPAN_WARN("The crate appears to be broken.")
 		return
 	if(src.allowed(user))
 		set_locked(!locked, user)
@@ -176,7 +176,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARN("This mob type can't use this verb.")
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -195,13 +195,13 @@
 	if(istype(W, /obj/item/device/multitool) && locked)
 		var/obj/item/device/multitool/multi = W
 		if(multi.in_use)
-			user << "<span class='warning'>This multitool is already in use!</span>"
+			user << SPAN_WARN("This multitool is already in use!")
 			return
 		multi.in_use = 1
 		for(var/i in 1 to rand(4,8))
 			user.visible_message(
-				"<span class='warning'>[user] picks in wires of the [src.name] with a multitool.</span>",
-				"<span class='warning'>I am trying to reset circuitry lock module ([i])...</span>"
+				SPAN_WARN("[user] picks in wires of the [src.name] with a multitool."),
+				SPAN_WARN("I am trying to reset circuitry lock module ([i])...")
 			)
 			if(!do_after(user,200)||!locked)
 				multi.in_use=0
@@ -211,8 +211,8 @@
 		src.update_icon()
 		multi.in_use=0
 		user.visible_message(
-			"<span class='warning'>[user] [locked?"locks":"unlocks"] [name] with a multitool.</span>",
-			"<span class='warning'>I [locked?"enable":"disable"] the locking modules.</span>"
+			SPAN_WARN("[user] [locked?"locks":"unlocks"] [name] with a multitool."),
+			SPAN_WARN("I [locked?"enable":"disable"] the locking modules.")
 		)
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))
 		emag_act(INFINITY, user)

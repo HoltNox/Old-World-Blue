@@ -76,9 +76,9 @@
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
 			update_icon()
 		else
-			user << "<span class='warning'>The controls are locked!</span>"
+			user << SPAN_WARN("The controls are locked!")
 	else
-		user << "<span class='warning'>\The [src] needs to be firmly secured to the floor first.</span>"
+		user << SPAN_WARN("\The [src] needs to be firmly secured to the floor first.")
 		return 1
 
 
@@ -126,12 +126,12 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		var/obj/item/projectile/beam/emitter/A = new (src.loc)
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
 		if(prob(35))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect/effect/system/spark_spread/s = new
 			s.set_up(5, 1, src)
 			s.start()
 		A.set_dir(src.dir)
@@ -158,19 +158,23 @@
 			if(0)
 				state = 1
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] secures [src] to the floor.", \
-					"You secure the external reinforcing bolts to the floor.", \
-					"You hear a ratchet")
+				user.visible_message(
+					"[user.name] secures [src] to the floor.",
+					"You secure the external reinforcing bolts to the floor.",
+					"You hear a ratchet"
+				)
 				src.anchored = 1
 			if(1)
 				state = 0
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] unsecures [src] reinforcing bolts from the floor.", \
-					"You undo the external reinforcing bolts.", \
-					"You hear a ratchet")
+				user.visible_message(
+					"[user.name] unsecures [src] reinforcing bolts from the floor.",
+					"You undo the external reinforcing bolts.",
+					"You hear a ratchet"
+				)
 				src.anchored = 0
 			if(2)
-				user << "<span class='warning'>\The [src] needs to be unwelded from the floor.</span>"
+				user << SPAN_WARN("\The [src] needs to be unwelded from the floor.")
 		return
 
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -180,7 +184,7 @@
 			return
 		switch(state)
 			if(0)
-				user << "<span class='warning'>\The [src] needs to be wrenched to the floor.</span>"
+				user << SPAN_WARN("\The [src] needs to be wrenched to the floor.")
 			if(1)
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -193,7 +197,7 @@
 						user << "You weld [src] to the floor."
 						connect_to_network()
 				else
-					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					user << SPAN_WARN("You need more welding fuel to complete this task.")
 			if(2)
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -206,12 +210,12 @@
 						user << "You cut [src] free from the floor."
 						disconnect_from_network()
 				else
-					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					user << SPAN_WARN("You need more welding fuel to complete this task.")
 		return
 
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
-			user << "<span class='warning'>The lock seems to be broken.</span>"
+			user << SPAN_WARN("The lock seems to be broken.")
 			return
 		if(src.allowed(user))
 			if(active)
@@ -219,9 +223,9 @@
 				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << "<span class='warning'>The controls can only be locked when [src] is online.</span>"
+				user << SPAN_WARN("The controls can only be locked when [src] is online.")
 		else
-			user << "<span class='warning'>Access denied.</span>"
+			user << SPAN_WARN("Access denied.")
 		return
 	..()
 	return
@@ -230,5 +234,8 @@
 	if(!emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags [src].","<span class='warning'>You short out the lock.</span>")
+		user.visible_message(
+			SPAN_WARN("[user] short out [src] lock!"),
+			SPAN_WARN("You short out the lock.")
+		)
 		return 1

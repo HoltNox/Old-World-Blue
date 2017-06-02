@@ -32,7 +32,7 @@
 	//TODO: DNA3 clown_block
 	/*
 	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		M << "<span class='warning'>You accidentally slam yourself with the [src]!</span>"
+		M << SPAN_WARN("You accidentally slam yourself with the [src]!")
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		if(prob(50))
@@ -83,7 +83,7 @@
 				break
 
 	if(H && protection)
-		M << "<span class='warning'>You get slammed in the face with the tray, against your [protection]!</span>"
+		M << SPAN_WARN("You get slammed in the face with the tray, against your [protection]!")
 		if(prob(33))
 			src.add_blood(H)
 			if (H.wear_mask)
@@ -113,7 +113,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		M << "<span class='warning'>You get slammed in the face with the tray!</span>"
+		M << SPAN_WARN("You get slammed in the face with the tray!")
 		if(prob(33))
 			src.add_blood(M)
 			var/turf/location = M.loc
@@ -161,7 +161,7 @@
 /obj/item/weapon/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(user.get_inactive_hand() == src && istype(W, /obj/item/weapon/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(SPAN_WARN("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else if(istype(W, /obj/item))
@@ -211,7 +211,7 @@
 /obj/item/weapon/tray/proc/add_to_carry(var/obj/item/I, var/mob/user)
 	if(carry > max_carry)
 		if(user)
-			user << "<span class='warning'>There is not enough free space for [I].</span>"
+			user << SPAN_WARN("There is not enough free space for [I].")
 		return 0
 	if(ismob(I.loc))
 		var/mob/M = I.loc

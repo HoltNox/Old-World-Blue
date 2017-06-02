@@ -196,7 +196,7 @@
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
 
 	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		user << SPAN_WARN("Access denied.")
 		return
 
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)

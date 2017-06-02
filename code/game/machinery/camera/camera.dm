@@ -106,7 +106,7 @@
 	if (istype(AM, /obj))
 		var/obj/O = AM
 		if (O.throwforce >= src.toughness)
-			visible_message("<span class='warning'><B>[src] was hit by [O].</B></span>")
+			visible_message(SPAN_WARN("<B>[src] was hit by [O].</B>"))
 		take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
@@ -120,7 +120,7 @@
 	if(user.can_shred())
 		set_status(0)
 		user.do_attack_animation(src)
-		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
+		visible_message(SPAN_WARN("\The [user] slashes at [src]!"))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
 		destroy()
@@ -132,8 +132,10 @@
 		//user << "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>"
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
 		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
-		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+		user.visible_message(
+			SPAN_WARN("[user] screws the camera's panel [panel_open ? "open" : "closed"]!"),
+			"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>"
+		)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 
 	else if((iswirecutter(W) || ismultitool(W)) && panel_open)
@@ -181,7 +183,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if (W.force >= src.toughness)
 			user.do_attack_animation(src)
-			visible_message("<span class='warning'><b>[user] [pick(W.attack_verb)] [src] with [W]!</b></span>")
+			visible_message(SPAN_WARN("<b>[user] [pick(W.attack_verb)] [src] with [W]!</b>"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
 				var/obj/item/I = W
 				if (I.hitsound)
@@ -361,7 +363,7 @@
 		return
 
 	if(stat & BROKEN)
-		user << "<span class='warning'>\The [src] is broken.</span>"
+		user << SPAN_WARN("\The [src] is broken.")
 		return
 
 	user.set_machine(src)

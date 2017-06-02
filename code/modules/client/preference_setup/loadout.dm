@@ -61,11 +61,11 @@ var/list/gear_datums = list()
 
 /datum/gear/proc/spawn_for(var/mob/living/carbon/human/H, var/option)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	if(whitelisted && !is_alien_whitelisted(H, whitelisted))
-		H << "<span class='warning'>Your current whitelist status does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current whitelist status does not permit you to spawn with [display_name]!")
 		return null
 
 	var/build_path

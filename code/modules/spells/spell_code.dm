@@ -112,7 +112,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	if (ispath(src.CH_type))
 		if(!usr.client.CH || !istype(usr.client.CH,src.CH_type))//(usr.client.CH.handler_name != src.name))
 			usr.client.CH = PoolOrNew(CH_type,usr.client)
-			usr << "<span class='warning'>You prepare [src.name].</span>"
+			usr << SPAN_WARN("You prepare [src.name].")
 		else
 			qdel(usr.client.CH)
 			usr << "<span class='notice'>You unprepare [src.name].</span>"
@@ -201,7 +201,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	if(!(src in user.spell_list) && holder == user)
 		error("[user] utilized the spell '[src]' without having it.")
-		user << "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>"
+		user << SPAN_WARN("You shouldn't have this spell! Something's wrong.")
 		return 0
 
 	if(silenced > 0)
@@ -209,7 +209,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 	var/turf/user_turf = get_turf(user)
 	if(!user_turf)
-		user << "<span class='warning'>You cannot cast spells in null space!</span>"
+		user << SPAN_WARN("You cannot cast spells in null space!")
 
 	if(spell_flags & Z2NOCAST && isOnAdminLevel(user)) //Certain spells are not allowed on the centcomm zlevel
 		return 0
@@ -222,7 +222,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	if(istype(user, /mob/living/simple_animal) && holder == user)
 		var/mob/living/simple_animal/SA = user
 		if(SA.purge)
-			SA << "<span class='warning'>The nullrod's power interferes with your own!</span>"
+			SA << SPAN_WARN("The nullrod's power interferes with your own!")
 			return 0
 
 	if(!src.check_charge(skipcharge, user)) //sees if we can cast based on charges alone

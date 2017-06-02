@@ -257,7 +257,7 @@
 		src.welded = !src.welded
 		src.update_icon()
 		for(var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+			M.show_message(SPAN_WARN("[src] has been [welded?"welded shut":"unwelded"] by [user.name]."), 3, "You hear welding.", 2)
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(welded)
 			if(anchored)
@@ -326,7 +326,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARN("This mob type can't use this verb.")
 
 //Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 /obj/structure/closet/update_icon()
@@ -369,7 +369,7 @@
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either welded or locked... resist!!!
-	escapee << "<span class='warning'>You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)</span>"
+	escapee << SPAN_WARN("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)")
 
 	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
 
@@ -392,7 +392,7 @@
 
 	//Well then break it!
 	breakout = 0
-	escapee << "<span class='warning'>You successfully break out!</span>"
+	escapee << SPAN_WARN("You successfully break out!")
 	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
 	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()

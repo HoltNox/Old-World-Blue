@@ -217,7 +217,7 @@
 	return
 
 /mob/living/carbon/slime/meteorhit(O as obj)
-	visible_message("<span class='warning'>[src] has been hit by [O]</span>")
+	visible_message(SPAN_WARN("[src] has been hit by [O]"))
 
 	adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
 	adjustFireLoss(30)
@@ -232,11 +232,11 @@
 	if(Victim)
 		if(Victim == M)
 			if(prob(60))
-				visible_message("<span class='warning'>[M] attempts to wrestle \the [name] off!</span>")
+				visible_message(SPAN_WARN("[M] attempts to wrestle \the [name] off!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				visible_message("<span class='warning'> [M] manages to wrestle \the [name] off!</span>")
+				visible_message(SPAN_WARN(" [M] manages to wrestle \the [name] off!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(90) && !client)
@@ -254,11 +254,11 @@
 
 		else
 			if(prob(30))
-				visible_message("<span class='warning'>[M] attempts to wrestle \the [name] off of [Victim]!</span>")
+				visible_message(SPAN_WARN("[M] attempts to wrestle \the [name] off of [Victim]!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				visible_message("<span class='warning'> [M] manages to wrestle \the [name] off of [Victim]!</span>")
+				visible_message(SPAN_WARN(" [M] manages to wrestle \the [name] off of [Victim]!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(80) && !client)
@@ -295,7 +295,7 @@
 			LAssailant = M
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+			visible_message(SPAN_WARN("[M] has grabbed [src] passively!"))
 
 		else
 

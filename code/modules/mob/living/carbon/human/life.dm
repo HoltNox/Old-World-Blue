@@ -197,7 +197,7 @@
 			custom_pain("Your head feels numb and painful.")
 	if(getBrainLoss() >= 15)
 		if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-			src << "<span class='warning'>It becomes hard to see for some reason.</span>"
+			src << SPAN_WARN("It becomes hard to see for some reason.")
 			eye_blurry = 10
 	if(getBrainLoss() >= 35)
 		if(7 <= rn && rn <= 9) if(get_active_hand())
@@ -250,13 +250,13 @@
 			if(!isSynthetic())
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 					radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-					src << "<span class='warning'>You feel weak.</span>"
+					src << SPAN_WARN("You feel weak.")
 					Weaken(3)
 					if(!lying)
 						emote("collapse")
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
 					if(h_style != species.default_h_style || f_style != species.default_f_style)
-						src << "<span class='warning'>Your hair falls out.</span>"
+						src << SPAN_WARN("Your hair falls out.")
 						h_style = species.default_h_style
 						f_style = species.default_f_style
 						update_hair()
@@ -268,7 +268,7 @@
 				if(prob(5))
 					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 				if(prob(1))
-					src << "<span class='warning'>You feel strange!</span>"
+					src << SPAN_WARN("You feel strange!")
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 
@@ -436,7 +436,7 @@
 		else if(exhaled_pp > safe_exhaled_max * 0.7)
 			if (!co2_alert || prob(1))
 				var/word = pick("dizzy","short of breath","faint","momentarily confused")
-				src << "<span class='warning'>You feel [word].</span>"
+				src << SPAN_WARN("You feel [word].")
 
 			//scale linearly from 0 to 1 between safe_exhaled_max and safe_exhaled_max*0.7
 			var/ratio = 1.0 - (safe_exhaled_max - exhaled_pp)/(safe_exhaled_max*0.3)
@@ -450,7 +450,7 @@
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
 			if (prob(0.3))
 				var/word = pick("a little dizzy","short of breath")
-				src << "<span class='warning'>You feel [word].</span>"
+				src << SPAN_WARN("You feel [word].")
 
 		else
 			co2_alert = 0

@@ -36,7 +36,7 @@
 
 /obj/machinery/computer/order/supply/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied.</span>"
+		user << SPAN_WARN("Access Denied.")
 		return
 	post_signal("supply")
 	return ..()

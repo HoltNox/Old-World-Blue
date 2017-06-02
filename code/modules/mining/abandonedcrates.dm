@@ -162,7 +162,7 @@
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
-		visible_message("<span class='warning'>A red light on \the [src]'s control panel flashes briefly.</span>")
+		visible_message(SPAN_WARN("A red light on \the [src]'s control panel flashes briefly."))
 		attempts--
 		if (attempts == 0)
 			user << "<span class='danger'>The crate's anti-tamper system activates!</span>"
@@ -195,7 +195,7 @@
 		if (istype(W, /obj/item/device/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
 			user << "<span class='notice'>DECA-CODE LOCK ANALYSIS:</span>"
 			if (attempts == 1)
-				user << "<span class='warning'>* Anti-Tamper system will activate on the next failed access attempt.</span>"
+				user << SPAN_WARN("* Anti-Tamper system will activate on the next failed access attempt.")
 			else
 				user << "<span class='notice'>* Anti-Tamper system will activate after [src.attempts] failed access attempts.</span>"
 			if(lastattempt.len)

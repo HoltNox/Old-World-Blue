@@ -157,7 +157,10 @@
 
 				if(T)
 					src.loc = T
-					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
+					visible_message(
+						SPAN_WARN("[src] is pinned to the wall by [O]!"),
+						SPAN_WARN("You are pinned to the wall by [O]!")
+					)
 					src.anchored = 1
 					src.pinned += O
 

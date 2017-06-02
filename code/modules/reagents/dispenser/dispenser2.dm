@@ -33,22 +33,22 @@
 /obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/weapon/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
 		if(user)
-			user << "<span class='warning'>\The [C] will not fit in \the [src]!</span>"
+			user << SPAN_WARN("\The [C] will not fit in \the [src]!")
 		return
 
 	if(cartridges.len >= DISPENSER_MAX_CARTRIDGES)
 		if(user)
-			user << "<span class='warning'>\The [src] does not have any slots open for \the [C] to fit into!</span>"
+			user << SPAN_WARN("\The [src] does not have any slots open for \the [C] to fit into!")
 		return
 
 	if(!C.label)
 		if(user)
-			user << "<span class='warning'>\The [C] does not have a label!</span>"
+			user << SPAN_WARN("\The [C] does not have a label!")
 		return
 
 	if(cartridges[C.label])
 		if(user)
-			user << "<span class='warning'>\The [src] already contains a cartridge with that label!</span>"
+			user << SPAN_WARN("\The [src] already contains a cartridge with that label!")
 		return
 
 	if(user)
@@ -91,17 +91,17 @@
 
 	else if(istype(W, /obj/item/weapon/reagent_containers/glass) || istype(W, /obj/item/weapon/reagent_containers/food))
 		if(container)
-			user << "<span class='warning'>There is already \a [container] on \the [src]!</span>"
+			user << SPAN_WARN("There is already \a [container] on \the [src]!")
 			return
 
 		var/obj/item/weapon/reagent_containers/RC = W
 
 		if(!accept_drinking && istype(RC,/obj/item/weapon/reagent_containers/food))
-			user << "<span class='warning'>This machine only accepts beakers!</span>"
+			user << SPAN_WARN("This machine only accepts beakers!")
 			return
 
 		if(!RC.is_open_container())
-			user << "<span class='warning'>You don't see how \the [src] could dispense reagents into \the [RC].</span>"
+			user << SPAN_WARN("You don't see how \the [src] could dispense reagents into \the [RC].")
 			return
 
 		container =  RC

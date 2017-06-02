@@ -480,7 +480,7 @@
 
 	if (istype(W, /obj/item/weapon/weldingtool))
 		if (src == user)
-			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
+			user << SPAN_WARN("You lack the reach to be able to repair yourself.")
 			return
 
 		if (!getBruteLoss())

@@ -75,7 +75,7 @@
 		return
 
 	if(jobban_isbanned(player, "Drone"))
-		player<<"<span class='warning'>You can't join game as drone!</span>"
+		player<<SPAN_WARN("You can't join game as drone!")
 		return
 
 	announce_ghost_joinleave(player, 0, "They have taken control over a maintenance drone.")

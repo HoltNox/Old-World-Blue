@@ -44,20 +44,20 @@
 
 	loc = sanitize(loc)
 	if(!loc)
-		src << "<span class='warning'>Must supply a location name</span>"
+		src << SPAN_WARN("Must supply a location name")
 		return
 
 	if(stored_locations.len >= max_locations)
-		src << "<span class='warning'>Cannot store additional locations. Remove one first</span>"
+		src << SPAN_WARN("Cannot store additional locations. Remove one first")
 		return
 
 	if(loc in stored_locations)
-		src << "<span class='warning'>There is already a stored location by this name</span>"
+		src << SPAN_WARN("There is already a stored location by this name")
 		return
 
 	var/L = src.eyeobj.getLoc()
 	if(!isOnPlayerLevel(L))
-		src << "<span class='warning'>Unable to store this location</span>"
+		src << SPAN_WARN("Unable to store this location")
 		return
 
 	stored_locations[loc] = L
@@ -72,7 +72,7 @@
 	set desc = "Returns to the selected camera location"
 
 	if (!(loc in stored_locations))
-		src << "<span class='warning'>Location [loc] not found</span>"
+		src << SPAN_WARN("Location [loc] not found")
 		return
 
 	var/L = stored_locations[loc]
@@ -84,7 +84,7 @@
 	set desc = "Deletes the selected camera location"
 
 	if (!(loc in stored_locations))
-		src << "<span class='warning'>Location [loc] not found</span>"
+		src << SPAN_WARN("Location [loc] not found")
 		return
 
 	stored_locations.Remove(loc)
@@ -257,7 +257,7 @@ mob/living/proc/tracking_initiated()
 mob/living/silicon/robot/tracking_initiated()
 	tracking_entities++
 	if(tracking_entities == 1 && has_zeroth_law())
-		src << "<span class='warning'>Internal camera is currently being accessed.</span>"
+		src << SPAN_WARN("Internal camera is currently being accessed.")
 
 mob/living/proc/tracking_cancelled()
 

@@ -74,7 +74,7 @@
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src.loc, "sparks", 50, 1)
 	else
-		user << "<span class='warning'>Access Denied</span>"
+		user << SPAN_WARN("Access Denied")
 	return
 
 /obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
@@ -84,7 +84,10 @@
 		desc = "It appears to be broken."
 		update_icon()
 		if(visual_feedback)
-			visible_message("<span class='warning'>[visual_feedback]</span>", "<span class='warning'>[audible_feedback]</span>")
+			visible_message(
+				SPAN_WARN("[visual_feedback]"),
+				SPAN_WARN("[audible_feedback]")
+			)
 		return 1
 	else
 		return -1
@@ -98,9 +101,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			usr << "<span class='warning'>You need to unlock it first.</span>"
+			usr << SPAN_WARN("You need to unlock it first.")
 		else if (src.broken)
-			usr << "<span class='warning'>It appears to be broken.</span>"
+			usr << SPAN_WARN("It appears to be broken.")
 		else
 			if (src.opened)
 				if(!src.close())

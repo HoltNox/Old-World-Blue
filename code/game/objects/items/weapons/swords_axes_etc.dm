@@ -57,8 +57,11 @@
 		)
 		src.add_fingerprint(user)
 
-		for(var/mob/O in viewers(M))
-			if (O.client)	O.show_message("\red <B>[M] has been stunned with \the [src] by [user]!</B>", 1, "\red You hear someone fall", 2)
+		M.visible_message(
+			SPAN_DANG("[M] has been stunned with \the [src] by [user]!),
+			SPAN_DANG("You has been stunned with \the [src] by [user]!"),
+			SPAN_WARN("You hear someone fall")
+		)
 
 //Telescopic baton
 /obj/item/weapon/melee/telebaton
@@ -76,8 +79,8 @@
 	on = !on
 	if(on)
 		user.visible_message(
-			"<span class='warning'>With a flick of their wrist, [user] extends their telescopic baton.</span>",
-			"<span class='warning'>You extend the baton.</span>",
+			SPAN_WARN("With a flick of their wrist, [user] extends their telescopic baton."),
+			SPAN_WARN("You extend the baton."),
 			"You hear an ominous click."
 		)
 		icon_state = "telebaton_1"
@@ -86,8 +89,8 @@
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message(
-			"<span class='notice'>\The [user] collapses their telescopic baton.</span>",\
-			"<span class='notice'>You collapse the baton.</span>",\
+			"<span class='notice'>\The [user] collapses their telescopic baton.</span>",
+			"<span class='notice'>You collapse the baton.</span>",
 			"You hear a click."
 		)
 		icon_state = "telebaton_0"

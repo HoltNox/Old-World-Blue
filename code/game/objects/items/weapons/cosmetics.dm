@@ -75,11 +75,15 @@
 			H.lip_color = colour
 			H.update_body()
 		else
-			user.visible_message("<span class='warning'>[user] begins to do [H]'s lips with \the [src].</span>", \
-								 "<span class='notice'>You begin to apply \the [src].</span>")
+			user.visible_message(
+				SPAN_WARN("[user] begins to do [H]'s lips with \the [src]."),
+				"<span class='notice'>You begin to apply \the [src].</span>"
+			)
 			if (do_mob(user, H, 20))//user needs to keep their active hand, H does not.
-				user.visible_message("<span class='notice'>[user] does [H]'s lips with \the [src].</span>", \
-									 "<span class='notice'>You apply \the [src].</span>")
+				user.visible_message(
+					"<span class='notice'>[user] does [H]'s lips with \the [src].</span>",
+					"<span class='notice'>You apply \the [src].</span>"
+				)
 				H.lip_color = colour
 				H.update_body()
 	else

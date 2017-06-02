@@ -59,8 +59,8 @@
 			if(((user.getBrainLoss() >= 60) && prob(50)))
 				triggered(user, user.hand ? BP_L_HAND : BP_R_HAND)
 				user.visible_message(
-					"<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>",
-					"<span class='warning'>You accidentally trigger [src]!</span>"
+					SPAN_WARN("[user] accidentally sets off [src], breaking their fingers."),
+					SPAN_WARN("You accidentally trigger [src]!")
 				)
 				return
 			user << "<span class='notice'>You disarm [src].</span>"
@@ -76,8 +76,8 @@
 			if(((user.getBrainLoss() >= 60)) && prob(50))
 				triggered(user, user.hand ? BP_L_HAND : BP_R_HAND)
 				user.visible_message(
-					"<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>",
-					"<span class='warning'>You accidentally trigger [src]!</span>"
+					SPAN_WARN("[user] accidentally sets off [src], breaking their fingers."),
+					SPAN_WARN("You accidentally trigger [src]!")
 				)
 				return
 		..()
@@ -90,8 +90,8 @@
 				if(H.m_intent == "run")
 					triggered(H)
 					H.visible_message(
-						"<span class='warning'>[H] accidentally steps on [src].</span>",
-						"<span class='warning'>You accidentally step on [src]</span>"
+						SPAN_WARN("[H] accidentally steps on [src]."),
+						SPAN_WARN("You accidentally step on [src]")
 					)
 			if(ismouse(AM))
 				triggered(AM)
@@ -101,8 +101,8 @@
 	on_found(mob/living/finder as mob)
 		if(armed)
 			finder.visible_message(
-				"<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>",
-				"<span class='warning'>You accidentally trigger [src]!</span>"
+				SPAN_WARN("[finder] accidentally sets off [src], breaking their fingers."),
+				SPAN_WARN("You accidentally trigger [src]!")
 			)
 			triggered(finder, finder.hand ? BP_L_HAND : BP_R_HAND)
 			return 1	//end the search!
@@ -112,7 +112,7 @@
 	hitby(A as mob|obj)
 		if(!armed)
 			return ..()
-		visible_message("<span class='warning'>[src] is triggered by [A].</span>")
+		visible_message(SPAN_WARN("[src] is triggered by [A]."))
 		triggered(null)
 
 

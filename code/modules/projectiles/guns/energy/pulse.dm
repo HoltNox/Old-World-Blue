@@ -10,7 +10,7 @@
 	sel_mode = 2
 	max_shots = 10
 	w_class = ITEM_SIZE_HUGE
-	
+
 	firemodes = list(
 		list(name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
 		list(name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
@@ -31,7 +31,7 @@
 	charge_cost=400
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
-	user << "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>"
+	user << SPAN_WARN("[src.name] has three settings, and they are all DESTROY.")
 
 //WHY?
 /obj/item/weapon/gun/energy/pulse_rifle/M1911

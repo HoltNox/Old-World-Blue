@@ -123,8 +123,8 @@
 		return
 
 	if(!cameras.len)
-		user << "<span class='warning'>No paired cameras detected!</span>"
-		user << "<span class='warning'>Bring a bug in contact with this device to pair the camera.</span>"
+		user << SPAN_WARN("No paired cameras detected!")
+		user << SPAN_WARN("Bring a bug in contact with this device to pair the camera.")
 		return
 
 	return 1

@@ -44,7 +44,7 @@
 
 /obj/item/device/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
 	if(is_hacking)
-		user << "<span class='warning'>You are already hacking!</span>"
+		user << SPAN_WARN("You are already hacking!")
 		return 0
 	if(!is_type_in_list(target, supported_types))
 		user << "\icon[src] <span class='warning'>Unable to hack this target!</span>"
@@ -64,7 +64,7 @@
 		user << "<span class='notice'>Your hacking attempt was succesful!</span>"
 		user.playsound_local(get_turf(src), 'sound/piano/A#6.ogg', 50)
 	else
-		user << "<span class='warning'>Your hacking attempt failed!</span>"
+		user << SPAN_WARN("Your hacking attempt failed!")
 		return 0
 
 	known_targets.Insert(1, target)	// Insert the newly hacked target first,

@@ -60,7 +60,7 @@
 		user << "<span class='notice'>Close the locker first.</span>"
 		return
 	if(src.broken)
-		user << "<span class='warning'>The locker appears to be broken.</span>"
+		user << SPAN_WARN("The locker appears to be broken.")
 		return
 	if(user.loc == src)
 		user << "<span class='notice'>You can't reach the lock from inside.</span>"
@@ -80,13 +80,13 @@
 			if(istype(W, /obj/item/device/multitool))
 				var/obj/item/device/multitool/multi = W
 				if(multi.in_use)
-					user << "<span class='warning'>This multitool is already in use!</span>"
+					user << SPAN_WARN("This multitool is already in use!")
 					return
 				multi.in_use = 1
 				for(var/i in 1 to rand(4,8))
 					user.visible_message(
-						"<span class='warning'>[user] picks in wires of the [src.name] with a multitool.</span>",
-						"<span class='warning'>I am trying to reset circuitry lock module ([i])...</span>"
+						SPAN_WARN("[user] picks in wires of the [src.name] with a multitool."),
+						SPAN_WARN("I am trying to reset circuitry lock module ([i])...")
 					)
 					if(!do_after(user,200)||!locked)
 						multi.in_use=0
@@ -95,8 +95,10 @@
 				broken = 1
 				src.update_icon()
 				multi.in_use=0
-				user.visible_message("<span class='warning'>[user] [locked?"locks":"unlocks"] [name] with a multitool.</span>",
-				"<span class='warning'>I [locked?"enable":"disable"] the locking modules.</span>")
+				user.visible_message(
+					SPAN_WARN("[user] [locked?"locks":"unlocks"] [name] with a multitool."),
+					SPAN_WARN("I [locked?"enable":"disable"] the locking modules.")
+				)
 		if(istype(W, /obj/item/weapon/melee/energy/blade))
 			if(emag_act(INFINITY, user, "<span class='danger'>The locker has been sliced open by [user] with \an [W]</span>!", "<span class='danger'>You hear metal being sliced and sparks flying.</span>"))
 				var/datum/effect/effect/system/spark_spread/spark_system = new()
@@ -133,9 +135,15 @@
 		if(visual_feedback)
 			visible_message(visual_feedback, audible_feedback)
 		else if(user && emag_source)
-			visible_message("<span class='warning'>\The [src] has been broken by \the [user] with \an [emag_source]!</span>", "You hear a faint electrical spark.")
+			visible_message(
+				SPAN_WARN("\The [src] has been broken by \the [user] with \an [emag_source]!"),
+				"You hear a faint electrical spark."
+			)
 		else
-			visible_message("<span class='warning'>\The [src] sparks and breaks open!</span>", "You hear a faint electrical spark.")
+			visible_message(
+				SPAN_WARN("\The [src] sparks and breaks open!"),
+				"You hear a faint electrical spark."
+			)
 		return 1
 	else
 		return -1
@@ -159,7 +167,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARN("This mob type can't use this verb.")
 
 /obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

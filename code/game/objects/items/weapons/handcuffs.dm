@@ -46,7 +46,7 @@
 	//TODO: DNA3 clown_block
 	/*
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>Uh ... how do those things work?!</span>"
+		user << SPAN_WARN("Uh ... how do those things work?!")
 		place_handcuffs(user, user)
 		return
 	*/

@@ -69,7 +69,7 @@
 		if(user)
 			user << "<span class='notice'>You short out [src]'s plant identifier circuits.</span>"
 		spawn(rand(30, 50))
-			visible_message("<span class='warning'>[src] buzzes oddly.</span>")
+			visible_message(SPAN_WARN("[src] buzzes oddly."))
 			emagged = 1
 		return 1
 

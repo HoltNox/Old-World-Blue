@@ -76,7 +76,7 @@
 		return
 
 	if(!anchored)
-		usr << "<span class='warning'>You must secure \the [src] first.</span>"
+		usr << SPAN_WARN("You must secure \the [src] first.")
 		return
 
 	if(stat & (NOPOWER|BROKEN))
@@ -171,7 +171,9 @@
 	if(istype(W, /obj/item/weapon/wrench))
 		if(playing)
 			StopPlaying()
-		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+		user.visible_message(
+			SPAN_WARN("[user] has [anchored ? "un" : ""]secured \the [src]."),
+			"<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		power_change()

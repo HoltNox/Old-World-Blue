@@ -208,12 +208,12 @@
 			return
 	if(W.GetID())
 		if(!check_access(W))
-			user << "<span class='warning'>Access Denied.</span>"
+			user << SPAN_WARN("Access Denied.")
 			return
 		if(!locked || isnull(occupant))
 			return
 		if((occupant.health < -20) && (occupant.stat != DEAD))
-			user << "<span class='warning'>Access Refused.</span>"
+			user << SPAN_WARN("Access Refused.")
 			return
 		else
 			locked = 0
@@ -226,7 +226,7 @@
 		return
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(locked && (anchored || occupant))
-			user << "<span class='warning'>Can not do that while [src] is in use.</span>"
+			user << SPAN_WARN("Can not do that while [src] is in use.")
 		else
 			anchored = !anchored
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)

@@ -646,16 +646,16 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(operating < 0) //emagged
-		user << "<span class='warning'>Unable to interface: Internal error.</span>"
+		user << SPAN_WARN("Unable to interface: Internal error.")
 		return STATUS_CLOSE
 	if(issilicon(user) && !src.canAIControl())
 		if(src.canAIHack(user))
 			src.hack(user)
 		else
 			if (src.isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				user << "<span class='warning'>Unable to interface: Connection timed out.</span>"
+				user << SPAN_WARN("Unable to interface: Connection timed out.")
 			else
-				user << "<span class='warning'>Unable to interface: Connection refused.</span>"
+				user << SPAN_WARN("Unable to interface: Connection refused.")
 		return STATUS_CLOSE
 
 	return ..()
@@ -744,7 +744,7 @@ About the new airlock wires panel:
 	else if(istype(C, /obj/item/weapon/screwdriver))
 		if (src.p_open)
 			if (stat & BROKEN)
-				usr << "<span class='warning'>The panel is broken and cannot be closed.</span>"
+				usr << SPAN_WARN("The panel is broken and cannot be closed.")
 			else
 				usr << "<span class='notice'>You close '[name]' airlock panel.</span>"
 				src.p_open = 0
@@ -813,7 +813,7 @@ About the new airlock wires panel:
 				if(istype(C, /obj/item/weapon/material/twohanded/fireaxe)) // If this is a fireaxe, make sure it's held in two hands.
 					var/obj/item/weapon/material/twohanded/fireaxe/F = C
 					if(!F.wielded)
-						user << "<span class='warning'>You need to be wielding \the [F] to do that.</span>"
+						user << SPAN_WARN("You need to be wielding \the [F] to do that.")
 						return
 				// At this point, it's an armblade or a fireaxe that passed the wielded test, let's try to open it.
 				if(density)

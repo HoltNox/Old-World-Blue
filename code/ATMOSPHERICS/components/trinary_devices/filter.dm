@@ -95,10 +95,10 @@
 
 /obj/machinery/atmospherics/trinary/filter/process()
 	..()
-	
+
 	last_power_draw = 0
 	last_flow_rate = 0
-	
+
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return
 
@@ -134,7 +134,7 @@
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>"
+		user << SPAN_WARN("You cannot unwrench \the [src], it too exerted due to internal pressure.")
 		add_fingerprint(user)
 		return 1
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
@@ -153,7 +153,7 @@
 		return
 
 	if(!src.allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		user << SPAN_WARN("Access denied.")
 		return
 
 	var/dat

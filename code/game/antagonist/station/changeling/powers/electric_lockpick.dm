@@ -51,7 +51,7 @@
 	var/datum/changeling/ling_datum = user.mind.changeling
 
 	if(ling_datum.chem_charges < 10)
-		user << "<span class='warning'>We require more chemicals to do that.</span>"
+		user << SPAN_WARN("We require more chemicals to do that.")
 		return
 
 	//Airlocks require an ugly block of code, but we don't want to just call emag_act(), since we don't want to break airlocks forever.
@@ -76,7 +76,7 @@
 				door.open() //If we're a windoor, open the windoor.
 				user << "<span class='notice'>We've opened \the [door].</span>"
 		else //Probably broken or no power.
-			user << "<span class='warning'>The door does not respond to the pulse.</span>"
+			user << SPAN_WARN("The door does not respond to the pulse.")
 		door.add_fingerprint(user)
 		log_and_message_admins("finger-lockpicked \an [door].")
 		ling_datum.chem_charges -= 10

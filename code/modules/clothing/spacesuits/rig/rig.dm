@@ -205,7 +205,7 @@
 		if(!instant)
 			M.visible_message("<font color='blue'>[M]'s suit emits a quiet hum as it begins to adjust its seals.</font>","<font color='blue'>With a quiet hum, the suit begins running checks and adjusting components.</font>")
 			if(seal_delay && !do_after(M,seal_delay))
-				if(M) M << "<span class='warning'>You must remain still while the suit is adjusting the components.</span>"
+				if(M) M << SPAN_WARN("You must remain still while the suit is adjusting the components.")
 				failed_to_seal = 1
 
 		if(!M)
@@ -227,7 +227,7 @@
 					continue
 
 				if(!istype(M) || !istype(piece) || !istype(compare_piece) || !msg_type)
-					if(M) M << "<span class='warning'>You must remain still while the suit is adjusting the components.</span>"
+					if(M) M << SPAN_WARN("You must remain still while the suit is adjusting the components.")
 					failed_to_seal = 1
 					break
 
@@ -359,17 +359,17 @@
 	if(!user_is_ai)
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.back != src)
-			fail_msg = "<span class='warning'>You must be wearing \the [src] to do this.</span>"
+			fail_msg = SPAN_WARN("You must be wearing \the [src] to do this.")
 		else if(user.incorporeal_move)
-			fail_msg = "<span class='warning'>You must be solid to do this.</span>"
+			fail_msg = SPAN_WARN("You must be solid to do this.")
 	if(sealing)
-		fail_msg = "<span class='warning'>The hardsuit is in the process of adjusting seals and cannot be activated.</span>"
+		fail_msg = SPAN_WARN("The hardsuit is in the process of adjusting seals and cannot be activated.")
 	else if(!fail_msg && ((use_unconcious && user.stat > 1) || (!use_unconcious && user.stat)))
 		fail_msg = "<span class='warning'>You are in no fit state to do that."
 	else if(!cell)
-		fail_msg = "<span class='warning'>There is no cell installed in the suit.</span>"
+		fail_msg = SPAN_WARN("There is no cell installed in the suit.")
 	else if(cost && cell.charge < cost * 10) //TODO: Cellrate?
-		fail_msg = "<span class='warning'>Not enough stored power.</span>"
+		fail_msg = SPAN_WARN("Not enough stored power.")
 
 	if(fail_msg)
 		user << "[fail_msg]"

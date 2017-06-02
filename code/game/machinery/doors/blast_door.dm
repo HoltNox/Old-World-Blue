@@ -95,7 +95,7 @@
 			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
 				var/obj/item/weapon/material/twohanded/fireaxe/F = C
 				if(!F.wielded)
-					user << "<span class='warning'>You need to be wielding \the [F] to do that.</span>"
+					user << SPAN_WARN("You need to be wielding \the [F] to do that.")
 					return
 
 			// If we're at this point, it's a fireaxe in both hands or something else that doesn't care for twohanding.
@@ -112,7 +112,7 @@
 				return
 			var/obj/item/stack/P = C
 			if(P.amount < amt)
-				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				usr << SPAN_WARN("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 				return
 			usr << "<span class='notice'>You begin repairing [src]...</span>"
 			if(do_after(usr, 30))
@@ -120,7 +120,7 @@
 					usr << "<span class='notice'>You have repaired \The [src]</span>"
 					src.repair()
 				else
-					usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+					usr << SPAN_WARN("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 
 
 

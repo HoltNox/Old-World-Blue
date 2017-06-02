@@ -86,7 +86,7 @@ for reference:
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
 		if(health < maxhealth)
 			if(D.get_amount() < 1)
-				user << "<span class='warning'>You need one sheet of [material.display_name] to repair \the [src].</span>"
+				user << SPAN_WARN("You need one sheet of [material.display_name] to repair \the [src].")
 				return
 			visible_message("<span class='notice'>[user] begins to repair \the [src].</span>")
 			if(do_after(user,20) && health < maxhealth)
@@ -189,7 +189,7 @@ for reference:
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-				visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+				visible_message(SPAN_WARN("BZZzZZzZZzZT"))
 				return
 		return
 	else if(istype(W, /obj/item/weapon/wrench))
@@ -197,12 +197,12 @@ for reference:
 			health = maxhealth
 			emagged = 0
 			req_access = list(access_security)
-			visible_message("<span class='warning'>[user] repairs \the [src]!</span>")
+			visible_message(SPAN_WARN("[user] repairs \the [src]!"))
 			return
 		else if(emagged > 0)
 			emagged = 0
 			req_access = list(access_security)
-			visible_message("<span class='warning'>[user] repairs \the [src]!</span>")
+			visible_message(SPAN_WARN("[user] repairs \the [src]!"))
 			return
 		return
 	else
@@ -278,7 +278,7 @@ for reference:
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+		visible_message(SPAN_WARN("BZZzZZzZZzZT"))
 		return 1
 	else if(emagged == 1)
 		emagged = 2
@@ -286,5 +286,5 @@ for reference:
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+		visible_message(SPAN_WARN("BZZzZZzZZzZT"))
 		return 1

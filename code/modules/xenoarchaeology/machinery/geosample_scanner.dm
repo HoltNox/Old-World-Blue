@@ -65,7 +65,7 @@
 
 /obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(scanning)
-		user << "<span class='warning'>You can't do that while [src] is scanning!</span>"
+		user << SPAN_WARN("You can't do that while [src] is scanning!")
 	else
 		if(istype(I, /obj/item/stack/nanopaste))
 			var/choice = alert("What do you want to do with the nanopaste?","Radiometric Scanner","Scan nanopaste","Fix seal integrity")
@@ -338,9 +338,9 @@
 					t_left_radspike = pick(5,10,15)
 					usr << "<span class='notice'>Scan initiated.</span>"
 				else
-					usr << "<span class='warning'>Could not initiate scan, seal requires replacing.</span>"
+					usr << SPAN_WARN("Could not initiate scan, seal requires replacing.")
 			else
-				usr << "<span class='warning'>Insert an item to scan.</span>"
+				usr << SPAN_WARN("Insert an item to scan.")
 
 	if(href_list["maserWavelength"])
 		maser_wavelength = max(min(maser_wavelength + 1000 * text2num(href_list["maserWavelength"]), 10000), 1)

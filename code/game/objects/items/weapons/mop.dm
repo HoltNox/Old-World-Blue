@@ -21,7 +21,7 @@
 			user << "<span class='notice'>Your mop is dry!</span>"
 			return
 
-		user.visible_message("<span class='warning'>[user] begins to clean \the [get_turf(A)].</span>")
+		user.visible_message(SPAN_WARN("[user] begins to clean \the [get_turf(A)]."))
 
 		if(do_after(user, 40))
 			var/turf/T = get_turf(A)

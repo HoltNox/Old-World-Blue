@@ -18,7 +18,7 @@
 
 /datum/gear/uniform/job_skirt/spawn_for(var/mob/living/carbon/human/H)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	var/tmp_path = path
@@ -73,7 +73,7 @@
 
 /datum/gear/uniform/job_jeans/spawn_for(var/mob/living/carbon/human/H)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	var/tmp_path = path
@@ -265,7 +265,7 @@
 
 /datum/gear/uniform/corpsecsuit/spawn_for(var/mob/living/carbon/human/H)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	var/tmp_path = path
@@ -290,7 +290,7 @@
 
 /datum/gear/uniform/bluesecsuit/spawn_for(var/mob/living/carbon/human/H)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	var/tmp_path = path
@@ -310,7 +310,7 @@
 
 /datum/gear/uniform/dnavysecsuit/spawn_for(var/mob/living/carbon/human/H)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	var/tmp_path = path
@@ -328,7 +328,7 @@
 
 /datum/gear/uniform/tansecsuit/spawn_for(var/mob/living/carbon/human/H)
 	if(allowed_roles && !(H.job in allowed_roles))
-		H << "<span class='warning'>Your current job does not permit you to spawn with [display_name]!</span>"
+		H << SPAN_WARN("Your current job does not permit you to spawn with [display_name]!")
 		return null
 
 	var/tmp_path = path

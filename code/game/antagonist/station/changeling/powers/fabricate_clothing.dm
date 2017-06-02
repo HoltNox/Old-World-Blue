@@ -43,7 +43,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	if(src in user)
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		user.visible_message(
-			"<span class='warning'>[user] tears off [src]!</span>",
+			SPAN_WARN("[user] tears off [src]!"),
 			"<span class='notice'>We remove [src].</span>"
 		)
 		user.drop_from_inventory(src)
@@ -156,7 +156,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
-		visible_message("<span class='warning'>[H] tears off [src]!</span>",
+		visible_message(SPAN_WARN("[H] tears off [src]!"),
 		"<span class='notice'>We remove [src].</span>")
 		qdel(src)
 		H.update_icons()

@@ -68,11 +68,11 @@
 		target.add_fingerprint(user)
 
 		if(!target.reagents.total_volume && target.reagents)
-			user << "<span class='warning'>\The [target] is empty.</span>"
+			user << SPAN_WARN("\The [target] is empty.")
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			user << "<span class='warning'>\The [src] is full.</span>"
+			user << SPAN_WARN("\The [src] is full.")
 			return
 
 		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
@@ -81,11 +81,11 @@
 	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
 
 		if(!reagents.total_volume)
-			user << "<span class='warning'>\The [src] is empty.</span>"
+			user << SPAN_WARN("\The [src] is empty.")
 			return
 
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			user << "<span class='warning'>\The [target] is full.</span>"
+			user << SPAN_WARN("\The [target] is full.")
 			return
 
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)

@@ -165,7 +165,7 @@
 			qdel(src)
 	else if(istype(D, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is empty!</span>"
+			user << SPAN_WARN("\The [src] is empty!")
 		else
 			reagents.trans_to_obj(D, 5)
 			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"

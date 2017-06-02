@@ -76,7 +76,7 @@
 	src.timeofdeath = world.time
 
 /mob/living/simple_animal/mouse/start_pulling(var/atom/movable/AM)//Prevents mouse from pulling things
-	src << "<span class='warning'>You are too small to pull anything.</span>"
+	src << SPAN_WARN("You are too small to pull anything.")
 	return
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)

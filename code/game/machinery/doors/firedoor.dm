@@ -88,7 +88,7 @@
 		return
 
 	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
-		user << "<span class='warning'>WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!</span>"
+		user << SPAN_WARN("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!")
 
 	user << "<b>Sensor readings:</b>"
 	for(var/index = 1; index <= tile_info.len; index++)
@@ -103,7 +103,7 @@
 			if(4)
 				o += "WEST: "
 		if(tile_info[index] == null)
-			o += "<span class='warning'>DATA UNAVAILABLE</span>"
+			o += SPAN_WARN("DATA UNAVAILABLE")
 			user << o
 			continue
 		var/celsius = convert_k2c(tile_info[index][1])
@@ -144,7 +144,7 @@
 		return//Already doing something.
 
 	if(blocked)
-		user << "<span class='warning'>\The [src] is welded solid!</span>"
+		user << SPAN_WARN("\The [src] is welded solid!")
 		return
 
 	var/alarmed = lockdown
@@ -164,7 +164,7 @@
 		return
 
 	if(alarmed && density && lockdown && !allowed(user))
-		user << "<span class='warning'>Access denied.  Please wait for authorities to arrive, or for the alert to clear.</span>"
+		user << SPAN_WARN("Access denied.  Please wait for authorities to arrive, or for the alert to clear.")
 		return
 	else
 		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\

@@ -4,7 +4,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "<span class='warning'>Speech is currently admin-disabled.</span>"
+		usr << SPAN_WARN("Speech is currently admin-disabled.")
 		return
 
 	if(!mob)	return
@@ -16,7 +16,7 @@
 	if(!msg)	return
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		src << "<span class='warning'>You have OOC muted.</span>"
+		src << SPAN_WARN("You have OOC muted.")
 		return
 
 	if(src.mob)

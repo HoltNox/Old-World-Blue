@@ -73,7 +73,7 @@
 		return 1
 
 	if(!allowed(usr) && (wires & 1))
-		usr << "<span class='warning'>Access Denied</span>"
+		usr << SPAN_WARN("Access Denied")
 		flick("mbutton-deny",src)
 		return 1
 

@@ -70,10 +70,10 @@
 	var/t = "A gas flow meter. "
 
 	if(. > 3 && !(isAI(user) || isobserver(user)))
-		t += "<span class='warning'>You are too far away to read it.</span>"
+		t += SPAN_WARN("You are too far away to read it.")
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += "<span class='warning'>The display is off.</span>"
+		t += SPAN_WARN("The display is off.")
 
 	else if(src.target)
 		var/datum/gas_mixture/environment = target.return_air()

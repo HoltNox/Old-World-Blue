@@ -115,7 +115,7 @@ var/global/list/chameleons_categories = list(
 			armor = initial(armor)
 			return 1
 		else
-			user << "<span class='warning'>You must place [src] on flat surface for detach [initial(name)]!</span>"
+			user << SPAN_WARN("You must place [src] on flat surface for detach [initial(name)]!")
 	..()
 
 /obj/item/chameleon/attack_self(var/mob/living/user)
@@ -141,7 +141,7 @@ var/global/list/chameleons_categories = list(
 			category = "glasses"
 		if(category)
 			if(!isturf(A.loc))
-				user << "<span class='warning'>You must place [A] on flat surface for attaching [src]!</span>"
+				user << SPAN_WARN("You must place [A] on flat surface for attaching [src]!")
 				category = ""
 				return 1
 			new /obj/item/chameleon/proc/change(src,"Change [capitalize(category)] Appearance")

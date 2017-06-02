@@ -23,7 +23,7 @@
 /obj/item/weapon/cane/concealed/attack_self(var/mob/user)
 	if(concealed_blade)
 		user.visible_message(
-			"<span class='warning'>[user] has unsheathed \a [concealed_blade] from \his [src]!</span>",
+			SPAN_WARN("[user] has unsheathed \a [concealed_blade] from \his [src]!"),
 			"You unsheathe \the [concealed_blade] from \the [src]."
 		)
 		// Calling drop/put in hands to properly call item drop/pickup procs
@@ -39,7 +39,7 @@
 /obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
 		user.visible_message(
-			"<span class='warning'>[user] has sheathed \a [W] into \his [src]!</span>",
+			SPAN_WARN("[user] has sheathed \a [W] into \his [src]!"),
 			"You sheathe \the [W] into \the [src]."
 		)
 		user.drop_from_inventory(W)

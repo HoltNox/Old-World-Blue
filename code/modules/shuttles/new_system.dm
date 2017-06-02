@@ -67,7 +67,7 @@
 	if(!result)
 		result = "<span class='notice'>Success!</span>"
 	else
-		result = "<span class='warning'>[result]</span>"
+		result = SPAN_WARN("[result]")
 	usr << result
 
 /proc/get_most_distant_object(var/list/L, var/dir = NORTH)

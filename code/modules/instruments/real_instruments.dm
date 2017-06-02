@@ -147,7 +147,7 @@
 
 	attack_self(mob/user)
 		if(!user.IsAdvancedToolUser())
-			user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+			user << SPAN_WARN("You don't have the dexterity to do this!")
 			return 1
 		interact(user)
 

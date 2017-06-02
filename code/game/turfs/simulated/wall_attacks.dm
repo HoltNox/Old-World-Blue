@@ -208,7 +208,7 @@
 
 			user << "<span class='notice'>You remove the outer plating.</span>"
 			dismantle_wall()
-			user.visible_message("<span class='warning'>The wall was torn open by [user]!</span>")
+			user.visible_message(SPAN_WARN("The wall was torn open by [user]!"))
 			return
 
 	//Reinforced dismantling.

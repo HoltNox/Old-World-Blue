@@ -11,8 +11,8 @@
 
 	//First, check if we're already wearing the armor, and if so, take it off.
 	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type))
-		M.visible_message("<span class='warning'>[M] casts off their [M.wear_suit.name]!</span>",
-		"<span class='warning'>We cast off our [M.wear_suit.name]</span>",
+		M.visible_message(SPAN_WARN("[M] casts off their [M.wear_suit.name]!"),
+		SPAN_WARN("We cast off our [M.wear_suit.name]"),
 		"<span class='italics'>You hear the organic matter ripping and tearing!</span>")
 		qdel(M.wear_suit)
 		qdel(M.head)
@@ -22,7 +22,7 @@
 		return 1
 
 	if(M.head || M.wear_suit) //Make sure our slots aren't full
-		src << "<span class='warning'>We require nothing to be on our head, and we cannot wear any external suits.</span>"
+		src << SPAN_WARN("We require nothing to be on our head, and we cannot wear any external suits.")
 		return 0
 
 	var/obj/item/clothing/suit/A = new armor_type(src)
@@ -106,7 +106,7 @@
 
 		if(success)
 			playsound(src, 'sound/effects/splat.ogg', 30, 1)
-			visible_message("<span class='warning'>[src] pulls on their clothes, peeling it off along with parts of their skin attached!</span>",
+			visible_message(SPAN_WARN("[src] pulls on their clothes, peeling it off along with parts of their skin attached!"),
 			"<span class='notice'>We remove and deform our equipment.</span>")
 		M.update_icons()
 		M.mind.changeling.armor_deployed = 0
@@ -240,7 +240,7 @@
 	var/mob/living/carbon/human/M = src
 
 	if(M.l_hand && M.r_hand) //Make sure our hands aren't full.
-		src << "<span class='warning'>Our hands are full.  Drop something first.</span>"
+		src << SPAN_WARN("Our hands are full.  Drop something first.")
 		return 0
 
 	var/obj/item/weapon/W = new weapon_type(src)

@@ -13,7 +13,7 @@
 /obj/machinery/microscope/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if(sample)
-		user << "<span class='warning'>There is already a slide in the microscope.</span>"
+		user << SPAN_WARN("There is already a slide in the microscope.")
 		return
 
 	if(istype(W, /obj/item/weapon/forensics/swab)|| istype(W, /obj/item/weapon/sample/fibers) || istype(W, /obj/item/weapon/sample/print))
@@ -27,7 +27,7 @@
 /obj/machinery/microscope/attack_hand(mob/user)
 
 	if(!sample)
-		user << "<span class='warning'>The microscope has no sample to examine.</span>"
+		user << SPAN_WARN("The microscope has no sample to examine.")
 		return
 
 	user << "<span class='notice'>The microscope whirrs as you examine \the [sample].</span>"
@@ -94,7 +94,7 @@
 	if(!istype(remover) || remover.stat > 0 || !Adjacent(remover))
 		return ..()
 	if(!sample)
-		remover << "<span class='warning'>\The [src] does not have a sample in it.</span>"
+		remover << SPAN_WARN("\The [src] does not have a sample in it.")
 		return
 	remover << "<span class='notice'>You remove \the [sample] from \the [src].</span>"
 	remover.put_in_hands(sample)

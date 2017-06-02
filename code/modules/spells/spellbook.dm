@@ -259,7 +259,7 @@
 		onlearned(user)
 
 /obj/item/weapon/spellbook/oneuse/proc/recoil(mob/user as mob)
-	user.visible_message("<span class='warning'>[src] glows in a black light!</span>")
+	user.visible_message(SPAN_WARN("[src] glows in a black light!"))
 
 /obj/item/weapon/spellbook/oneuse/proc/onlearned(mob/user as mob)
 	used = 1
@@ -303,7 +303,7 @@
 
 /obj/item/weapon/spellbook/oneuse/blind/recoil(mob/user as mob)
 	..()
-	user <<"<span class='warning'>You go blind!</span>"
+	user <<SPAN_WARN("You go blind!")
 	user.eye_blind = 10
 */
 /obj/item/weapon/spellbook/oneuse/mindswap
@@ -325,7 +325,7 @@
 		stored_swap = null
 	if(!stored_swap)
 		stored_swap = user
-		user <<"<span class='warning'>For a moment you feel like you don't even know who you are anymore.</span>"
+		user <<SPAN_WARN("For a moment you feel like you don't even know who you are anymore.")
 		return
 	if(stored_swap == user)
 		user <<"<span class='notice'>You stare at the book some more, but there doesn't seem to be anything else to learn...</span>"
@@ -357,8 +357,8 @@
 		for(var/V in user.mind.special_verbs)
 			user.verbs += V
 
-	stored_swap <<"<span class='warning'>You're suddenly somewhere else... and someone else?!</span>"
-	user <<"<span class='warning'>Suddenly you're staring at [src] again... where are you, who are you?!</span>"
+	stored_swap <<SPAN_WARN("You're suddenly somewhere else... and someone else?!")
+	user <<SPAN_WARN("Suddenly you're staring at [src] again... where are you, who are you?!")
 	stored_swap = null
 
 /obj/item/weapon/spellbook/oneuse/forcewall
@@ -369,7 +369,7 @@
 
 /obj/item/weapon/spellbook/oneuse/forcewall/recoil(mob/user as mob)
 	..()
-	user <<"<span class='warning'>You suddenly feel very solid!</span>"
+	user <<SPAN_WARN("You suddenly feel very solid!")
 	var/obj/structure/closet/statue/S = new(user.loc, user)
 	S.timer = 30
 	user.drop_from_inventory(src)
@@ -383,7 +383,7 @@
 
 /obj/item/weapon/spellbook/oneuse/knock/recoil(mob/user as mob)
 	..()
-	user <<"<span class='warning'>You're knocked down!</span>"
+	user <<SPAN_WARN("You're knocked down!")
 	user.Weaken(20)
 
 /obj/item/weapon/spellbook/oneuse/horsemask
@@ -413,5 +413,5 @@
 
 /obj/item/weapon/spellbook/oneuse/charge/recoil(mob/user as mob)
 	..()
-	user <<"<span class='warning'>[src] suddenly feels very warm!</span>"
+	user <<SPAN_WARN("[src] suddenly feels very warm!")
 	empulse(src, 1, 1)

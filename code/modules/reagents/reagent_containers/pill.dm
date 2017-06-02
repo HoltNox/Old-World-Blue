@@ -36,10 +36,10 @@
 	user << "<span class='notice'>You swallow \the [src].</span>"
 
 /obj/item/weapon/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] attempts to force [target] to swallow \the [src].</span>")
+	user.visible_message(SPAN_WARN("[user] attempts to force [target] to swallow \the [src]."))
 
 /obj/item/weapon/reagent_containers/pill/other_feed_message_finish(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] forces [target] to swallow \the [src].</span>")
+	user.visible_message(SPAN_WARN("[user] forces [target] to swallow \the [src]."))
 
 /obj/item/weapon/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
@@ -56,7 +56,7 @@
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
-			O.show_message("<span class='warning'>[user] puts something in \the [target].</span>", 1)
+			O.show_message(SPAN_WARN("[user] puts something in \the [target]."), 1)
 
 		qdel(src)
 

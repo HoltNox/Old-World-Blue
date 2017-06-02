@@ -19,11 +19,11 @@
 
 /obj/item/stack/medical/attack(mob/living/carbon/M, mob/user)
 	if (!istype(M))
-		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
+		user << SPAN_WARN("\The [src] cannot be applied to [M]!")
 		return 1
 
 	if(!user.IsAdvancedToolUser())
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		user << SPAN_WARN("You don't have the dexterity to do this!")
 		return 1
 
 	if(ishuman(M))
@@ -31,20 +31,20 @@
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(!affecting)
-			user << "<span class='warning'>[M] miss that body part!</span>"
+			user << SPAN_WARN("[M] miss that body part!")
 			return 1
 
 		if(affecting.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				user << "<span class='warning'>You can't apply [src] through [H.head]!</span>"
+				user << SPAN_WARN("You can't apply [src] through [H.head]!")
 				return 1
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				user << "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>"
+				user << SPAN_WARN("You can't apply [src] through [H.wear_suit]!")
 				return 1
 
 		if(affecting.robotic >= ORGAN_ROBOT)
-			user << "<span class='warning'>This isn't useful at all on a robotic limb.</span>"
+			user << SPAN_WARN("This isn't useful at all on a robotic limb.")
 			return 1
 
 		H.UpdateDamageIcon()
@@ -86,7 +86,7 @@
 		return 1
 
 	if(affecting.is_bandaged() && (!clean || affecting.is_disinfected()))
-		user << "<span class='warning'>The wounds on [H]'s [affecting.name] have already been treated.</span>"
+		user << SPAN_WARN("The wounds on [H]'s [affecting.name] have already been treated.")
 		return 1
 	else
 		user.visible_message(
@@ -132,9 +132,9 @@
 		affecting.update_damages()
 		if(used == amount)
 			if(affecting.is_bandaged())
-				user << "<span class='warning'>\The [src] is used up.</span>"
+				user << SPAN_WARN("\The [src] is used up.")
 			else
-				user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>"
+				user << SPAN_WARN("\The [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 		use(used)
 
 /obj/item/stack/medical/ointment
@@ -164,7 +164,7 @@
 		return 1
 
 	if(affecting.is_salved())
-		user << "<span class='warning'>The wounds on [H]'s [affecting.name] have already been salved.</span>"
+		user << SPAN_WARN("The wounds on [H]'s [affecting.name] have already been salved.")
 		return 1
 	else
 		user.visible_message(

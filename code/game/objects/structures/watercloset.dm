@@ -354,7 +354,7 @@
 		if(temperature >= H.species.heat_level_1)
 			H << "<span class='danger'>The water is searing hot!</span>"
 		else if(temperature <= H.species.cold_level_1)
-			H << "<span class='warning'>The water is freezing cold!</span>"
+			H << SPAN_WARN("The water is freezing cold!")
 
 /obj/item/weapon/bikehorn/rubberducky
 	name = "rubber ducky"
@@ -399,7 +399,7 @@
 		return
 
 	if(busy)
-		user << "<span class='warning'>Someone's already washing here.</span>"
+		user << SPAN_WARN("Someone's already washing here.")
 		return
 
 	usr << "<span class='notice'>You start washing your hands.</span>"
@@ -419,7 +419,7 @@
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob)
 	if(busy)
-		user << "<span class='warning'>Someone's already washing here.</span>"
+		user << SPAN_WARN("Someone's already washing here.")
 		return
 
 	var/obj/item/weapon/reagent_containers/RG = O

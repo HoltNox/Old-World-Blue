@@ -68,7 +68,7 @@
 
 /obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user=null)
 	if(tension <= 0)
-		user << "<span class='warning'>\The [src] is not drawn back!</span>"
+		user << SPAN_WARN("\The [src] is not drawn back!")
 		return null
 	return bolt
 
@@ -81,13 +81,19 @@
 /obj/item/weapon/gun/launcher/crossbow/attack_self(mob/living/user as mob)
 	if(tension)
 		if(bolt)
-			user.visible_message("[user] relaxes the tension on [src]'s string and removes [bolt].","You relax the tension on [src]'s string and remove [bolt].")
+			user.visible_message(
+				"[user] relaxes the tension on [src]'s string and removes [bolt].",
+				"You relax the tension on [src]'s string and remove [bolt]."
+			)
 			bolt.loc = get_turf(src)
 			var/obj/item/weapon/arrow/A = bolt
 			bolt = null
 			A.removed(user)
 		else
-			user.visible_message("[user] relaxes the tension on [src]'s string.","You relax the tension on [src]'s string.")
+			user.visible_message(
+				"[user] relaxes the tension on [src]'s string.",
+				"You relax the tension on [src]'s string."
+			)
 		tension = 0
 		update_icon()
 	else
@@ -103,12 +109,18 @@
 		return
 
 	current_user = user
-	user.visible_message("[user] begins to draw back the string of [src].","<span class='notice'>You begin to draw back the string of [src].</span>")
+	user.visible_message(
+		"[user] begins to draw back the string of [src].",
+		"<span class='notice'>You begin to draw back the string of [src].</span>"
+	)
 	tension = 1
 
 	while(bolt && tension && loc == current_user)
 		if(!do_after(user, 25)) //crossbow strings don't just magically pull back on their own.
-			user.visible_message("[usr] stops drawing and relaxes the string of [src].","<span class='warning'>You stop drawing back and relax the string of [src].</span>")
+			user.visible_message(
+				"[usr] stops drawing and relaxes the string of [src].",
+				SPAN_WARN("You stop drawing back and relax the string of [src].")
+			)
 			tension = 0
 			update_icon()
 			return
@@ -125,7 +137,10 @@
 			usr << "[src] clunks as you draw the string to its maximum tension!"
 			return
 
-		user.visible_message("[usr] draws back the string of [src]!","<span class='notice'>You continue drawing back the string of [src]!</span>")
+		user.visible_message(
+			"[usr] draws back the string of [src]!",
+			"<span class='notice'>You continue drawing back the string of [src]!</span>"
+		)
 
 /obj/item/weapon/gun/launcher/crossbow/proc/increase_tension(var/mob/user as mob)
 
@@ -148,7 +163,10 @@
 				bolt.fingerprintslast = src.fingerprintslast
 				bolt.loc = src
 				update_icon()
-				user.visible_message("[user] jams [bolt] into [src].","You jam [bolt] into [src].")
+				user.visible_message(
+					"[user] jams [bolt] into [src].",
+					"You jam [bolt] into [src]."
+				)
 				superheat_rod(user)
 			return
 

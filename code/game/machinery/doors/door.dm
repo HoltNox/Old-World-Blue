@@ -222,7 +222,7 @@
 			user << "<span class='notice'>Nothing to fix!</span>"
 			return
 		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+			user << SPAN_WARN("\The [src] must be closed before you can repair it.")
 			return
 
 		//figure out how much metal we need
@@ -234,7 +234,7 @@
 		if (repairing)
 			transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
 			if (!transfer)
-				user << "<span class='warning'>You must weld or remove \the [repairing] from \the [src] before you can add anything else.</span>"
+				user << SPAN_WARN("You must weld or remove \the [repairing] from \the [src] before you can add anything else.")
 		else
 			repairing = stack.split(amount_needed)
 			if (repairing)
@@ -248,7 +248,7 @@
 
 	if(repairing && istype(I, /obj/item/weapon/weldingtool))
 		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+			user << SPAN_WARN("\The [src] must be closed before you can repair it.")
 			return
 
 		var/obj/item/weapon/weldingtool/welder = I

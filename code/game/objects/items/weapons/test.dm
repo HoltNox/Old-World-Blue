@@ -19,6 +19,6 @@
 
 /obj/item/weapon/picket_sign/attack_self(mob/living/carbon/human/user)
 	if(label)
-		user.visible_message("<span class='warning'>[user] waves around \the \"[label]\" sign.</span>")
+		user.visible_message(SPAN_WARN("[user] waves around \the \"[label]\" sign."))
 	else
-		user.visible_message("<span class='warning'>[user] waves around blank sign.</span>")
+		user.visible_message(SPAN_WARN("[user] waves around blank sign."))

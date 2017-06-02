@@ -14,7 +14,7 @@
 	if(!changeling)
 		return 0
 	if(src.mind.changeling.recursive_enhancement)
-		src << "<span class='warning'>We have already prepared to enhance our next ability.</span>"
+		src << SPAN_WARN("We have already prepared to enhance our next ability.")
 		return 0
 	src << "<span class='notice'>We empower ourselves.  Our next ability will be extra potent.</span>"
 	src.mind.changeling.recursive_enhancement = 1

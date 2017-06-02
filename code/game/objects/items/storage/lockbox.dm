@@ -20,7 +20,7 @@
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/weapon/card/id))
 			if(src.broken)
-				user << "<span class='warning'>It appears to be broken.</span>"
+				user << SPAN_WARN("It appears to be broken.")
 				return
 			if(src.allowed(user))
 				src.locked = !( src.locked )
@@ -34,7 +34,7 @@
 					user << "<span class='notice'>You unlock \the [src]!</span>"
 					return
 			else
-				user << "<span class='warning'>Access Denied</span>"
+				user << SPAN_WARN("Access Denied")
 		else if(istype(W, /obj/item/weapon/melee/energy/blade))
 			if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -45,13 +45,13 @@
 		if(!locked)
 			..()
 		else
-			user << "<span class='warning'>It's locked!</span>"
+			user << SPAN_WARN("It's locked!")
 		return
 
 
 	show_to(mob/user as mob)
 		if(locked)
-			user << "<span class='warning'>It's locked!</span>"
+			user << SPAN_WARN("It's locked!")
 		else
 			..()
 		return
@@ -59,13 +59,13 @@
 /obj/item/storage/lockbox/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
 	if(!broken)
 		if(visual_feedback)
-			visual_feedback = "<span class='warning'>[visual_feedback]</span>"
+			visual_feedback = SPAN_WARN(visual_feedback)
 		else
-			visual_feedback = "<span class='warning'>The locker has been sliced open by [user] with an electromagnetic card!</span>"
+			visual_feedback = SPAN_WARN("The locker has been sliced open by [user] with an electromagnetic card!")
 		if(audible_feedback)
-			audible_feedback = "<span class='warning'>[audible_feedback]</span>"
+			audible_feedback = SPAN_WARN(audible_feedback)
 		else
-			audible_feedback = "<span class='warning'>You hear a faint electrical spark.</span>"
+			audible_feedback = SPAN_WARN("You hear a faint electrical spark.")
 
 		broken = 1
 		locked = 0

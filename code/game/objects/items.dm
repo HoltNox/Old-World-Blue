@@ -354,12 +354,12 @@ var/list/global/slot_flags_enumeration = list(
 		if(slot_wear_id)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
+					H << SPAN_WARN("You need a jumpsuit before you can attach this [name].")
 				return 0
 		if(slot_l_store, slot_r_store)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
+					H << SPAN_WARN("You need a jumpsuit before you can attach this [name].")
 				return 0
 			if(slot_flags & SLOT_DENYPOCKET)
 				return 0
@@ -370,11 +370,11 @@ var/list/global/slot_flags_enumeration = list(
 		if(slot_s_store)
 			if(!H.wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a suit before you can attach this [name].</span>"
+					H << SPAN_WARN("You need a suit before you can attach this [name].")
 				return 0
 			if(!H.wear_suit.allowed)
 				if(!disable_warning)
-					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
+					usr << SPAN_WARN("You somehow have a suit with no defined allowed items for suit storage, stop that.")
 				return 0
 			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
@@ -392,12 +392,12 @@ var/list/global/slot_flags_enumeration = list(
 		if(slot_tie)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
+					H << SPAN_WARN("You need a jumpsuit before you can attach this [name].")
 				return 0
 			var/obj/item/clothing/under/uniform = H.w_uniform
 			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
 				if (!disable_warning)
-					H << "<span class='warning'>You already have an accessory of this type attached to your [uniform].</span>"
+					H << SPAN_WARN("You already have an accessory of this type attached to your [uniform].")
 				return 0
 	return 1
 
@@ -420,21 +420,21 @@ var/list/global/slot_flags_enumeration = list(
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
-		usr << "<span class='warning'>You can't pick things up!</span>"
+	if(!istype(usr, /mob/living/carbon) || istype(usr, /mob/living/carbon/brain))//Is humanoid, and is not a brain
+		usr << SPAN_WARN("You can't pick things up!")
 		return
 	var/mob/living/carbon/C = usr
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		usr << "<span class='warning'>You can't pick things up!</span>"
+		usr << SPAN_WARN("You can't pick things up!")
 		return
 	if(src.anchored) //Object isn't anchored
-		usr << "<span class='warning'>You can't pick that up!</span>"
+		usr << SPAN_WARN("You can't pick that up!")
 		return
 	if(C.get_active_hand()) //Hand is not full
-		usr << "<span class='warning'>Your hand is full.</span>"
+		usr << SPAN_WARN("Your hand is full.")
 		return
 	if(!istype(src.loc, /turf)) //Object is on a turf
-		usr << "<span class='warning'>You can't pick that up!</span>"
+		usr << SPAN_WARN("You can't pick that up!")
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
@@ -464,11 +464,11 @@ var/list/global/slot_flags_enumeration = list(
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
-				user << "<span class='warning'>You're going to need to remove the eye covering first.</span>"
+				user << SPAN_WARN("You're going to need to remove the eye covering first.")
 				return
 
 	if(!M.has_eyes())
-		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
+		user << SPAN_WARN("You cannot locate any eyes on [M]!")
 		return
 
 	admin_attack_log(user, M,
@@ -484,7 +484,7 @@ var/list/global/slot_flags_enumeration = list(
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
-		M << "<span class='warning'>You stab yourself in the eye.</span>"
+		M << SPAN_WARN("You stab yourself in the eye.")
 		M.sdisabilities |= BLIND
 		M.weakened += 4
 		M.adjustBruteLoss(10)
@@ -512,14 +512,14 @@ var/list/global/slot_flags_enumeration = list(
 					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
 			if(prob(50))
 				if(!M.stat)
-					M << "<span class='warning'>You drop what you're holding and clutch at your eyes!</span>"
+					M << SPAN_WARN("You drop what you're holding and clutch at your eyes!")
 					M.drop_active_hand()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
-					M << "<span class='warning'>You go blind!</span>"
+					M << SPAN_WARN("You go blind!")
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()

@@ -346,11 +346,11 @@
 		var/obj/item/weapon/tray/T = W
 		if(T.contents.len)
 			if(prob(85))
-				user << "<span class='warning'>The tray won't fit in [src].</span>"
+				user << SPAN_WARN("The tray won't fit in [src].")
 				return
 			else
 				if(user.unEquip(W, get_turf(src)))
-					user << "<span class='warning'>God damnit!</span>"
+					user << SPAN_WARN("God damnit!")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)

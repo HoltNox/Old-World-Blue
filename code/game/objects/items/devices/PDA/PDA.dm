@@ -795,10 +795,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/obj/item/device/pda/P = locate(href_list["target"])
 				var/datum/reception/reception = get_reception(src, P, "", do_sleep = 0)
 				if(!(reception.message_server && reception.telecomms_reception & TELECOMMS_RECEPTION_SENDER))
-					U.show_message("<span class='warning'>An error flashes on your [src]: Connection unavailable</span>", 1)
+					U.show_message(SPAN_WARN("An error flashes on your [src]: Connection unavailable"), 1)
 					return
 				if(reception.telecomms_reception & TELECOMMS_RECEPTION_RECEIVER == 0) // Does our recepient have a broadcaster on their level?
-					U.show_message("<span class='warning'>An error flashes on your [src]: Recipient unavailable</span>", 1)
+					U.show_message(SPAN_WARN("An error flashes on your [src]: Recipient unavailable"), 1)
 					return
 				if(!isnull(P))
 					if (!P.toff && cartridge.charges > 0)
@@ -816,9 +816,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 								difficulty += 3
 
 						if(prob(difficulty))
-							U.show_message("<span class='warning'>An error flashes on your [src].</span>", 1)
+							U.show_message(SPAN_WARN("An error flashes on your [src]."), 1)
 						else if (prob(difficulty * 7))
-							U.show_message("<span class='warning'>Energy feeds back into your [src]!</span>", 1)
+							U.show_message(SPAN_WARN("Energy feeds back into your [src]!"), 1)
 							ui.close()
 							detonate_act(src)
 							log_mode("[key_name(U)] just attempted to blow up [P] with the Detomatix cartridge but failed, blowing themselves up", P)
@@ -937,7 +937,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			message += "Your [P] shatters in a thousand pieces!"
 
 	if(M && isliving(M))
-		message = "<span class='warning'>[message]</span>"
+		message = SPAN_WARN("[message]")
 		M.show_message(message, 1)
 
 /obj/item/device/pda/AltClick(mob/living/carbon/human/user)
@@ -1211,7 +1211,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(1)
 
 				for (var/mob/O in viewers(C, null))
-					O.show_message("<span class='warning'>\The [user] has analyzed [C]'s vitals!</span>", 1)
+					O.show_message(SPAN_WARN("\The [user] has analyzed [C]'s vitals!"), 1)
 
 				user.show_message("<span class='notice'>Analyzing Results for [C]:</span>")
 				user.show_message("<span class='notice'>    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]</span>", 1)
@@ -1253,7 +1253,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 			if(4)
 				for (var/mob/O in viewers(C, null))
-					O.show_message("<span class='warning'>\The [user] has analyzed [C]'s radiation levels!</span>", 1)
+					O.show_message(SPAN_WARN("\The [user] has analyzed [C]'s radiation levels!"), 1)
 
 				user.show_message("<span class='notice'>Analyzing Results for [C]:</span>")
 				if(C.radiation)

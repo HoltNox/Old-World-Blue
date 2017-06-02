@@ -22,7 +22,7 @@
 	if (world.time < expiration_time)
 		user << "<span class='notice'>This pass expires at [worldtime2text(expiration_time)].</span>"
 	else
-		user << "<span class='warning'>It expired at [worldtime2text(expiration_time)].</span>"
+		user << SPAN_WARN("It expired at [worldtime2text(expiration_time)].")
 
 /obj/item/weapon/card/id/guest/read()
 	if (world.time > expiration_time)
@@ -66,7 +66,7 @@
 			giver = O
 			updateUsrDialog()
 		else
-			user << "<span class='warning'>There is already ID card inside.</span>"
+			user << SPAN_WARN("There is already ID card inside.")
 
 /obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
@@ -127,7 +127,7 @@
 					if (dur > 0 && dur <= 120)
 						duration = dur
 					else
-						usr << "<span class='warning'>Invalid duration.</span>"
+						usr << SPAN_WARN("Invalid duration.")
 			if ("access")
 				var/A = text2num(href_list["access"])
 				if (A in accesses)

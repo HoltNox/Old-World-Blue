@@ -179,12 +179,12 @@
 
 	var/obj/item/organ/external/S = M.get_organ(user.zone_sel.selecting)
 	if(!S)
-		usr << "<span class='warning'>You can't scan this body part.</span>"
+		usr << SPAN_WARN("You can't scan this body part.")
 		return
 	if(!S.open)
-		usr << "<span class='warning'>You have to cut [S] open first!</span>"
+		usr << SPAN_WARN("You have to cut [S] open first!")
 		return
-	M.visible_message("<span class='notice'>\The [user] scans the wounds on [M]'s [S.name] with [src]</span>")
+	M.visible_message(SPAN_NOTE("\The [user] scans the wounds on [M]'s [S.name] with [src]"))
 
 	src.add_data(S)
 

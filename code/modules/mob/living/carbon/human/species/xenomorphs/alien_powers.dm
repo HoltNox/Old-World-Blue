@@ -169,7 +169,10 @@
 		src << "You cannot spit neurotoxin in your current state."
 		return
 
-	visible_message("<span class='warning'>[src] spits neurotoxin at [target]!</span>", "<span class='alium'>You spit neurotoxin at [target].</span>")
+	visible_message(
+		SPAN_WARN("[src] spits neurotoxin at [target]!"),
+		"<span class='alium'>You spit neurotoxin at [target].</span>"
+	)
 
 	//I'm not motivated enough to revise this. Prjectile code in general needs update.
 	// Maybe change this to use throw_at? ~ Z
@@ -207,7 +210,10 @@
 	if(!check_alien_ability(75,1,O_RESIN))
 		return
 
-	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
+	visible_message(
+		SPAN_WARN("<B>[src] vomits up a thick purple substance and begins to shape it!</B>"),
+		"<span class='alium'>You shape a [choice].</span>"
+	)
 	switch(choice)
 		if("resin door")
 			new /obj/structure/simple_door/resin(loc)

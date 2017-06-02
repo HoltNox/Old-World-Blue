@@ -248,7 +248,7 @@
 	..()
 	if(isscrewdriver(W))
 		if(cell)
-			user << "<span class='warning'>You eject the cell!</span>"
+			user << SPAN_WARN("You eject the cell!")
 			user.put_in_hands(cell)
 			cell = null
 		else
@@ -256,7 +256,7 @@
 		return
 	else if(istype(W, /obj/item/weapon/cell))
 		if(src.cell)
-			user << "<span class='warning'>You have already inserted a cell!</span>"
+			user << SPAN_WARN("You have already inserted a cell!")
 		else
 			user.drop_from_inventory(W, src)
 			src.cell = W
@@ -268,12 +268,12 @@
 			C.color = wires
 			wires = 0
 			user.put_in_hands(C)
-			user << "<span class='warning'>You cut the wire!</span>"
+			user << SPAN_WARN("You cut the wire!")
 		else
-			user << "<span class='warning'>There is no wire inside!</span>"
+			user << SPAN_WARN("There is no wire inside!")
 	else if(iswire(W))
 		if(src.wires)
-			user << "<span class='warning'>You have already inserted wire!</span>"
+			user << SPAN_WARN("You have already inserted wire!")
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
@@ -288,7 +288,7 @@
 		if(istype(user,/mob/living/silicon/robot))
 			var/current_module = user.get_active_hand()
 			if(current_module == W)
-				user << "<span class='warning'>How do you propose to do that?</span>"
+				user << SPAN_WARN("How do you propose to do that?")
 				return
 			else
 				add_flashes(W,user)

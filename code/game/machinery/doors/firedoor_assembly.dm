@@ -18,7 +18,7 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 	if(istype(C, /obj/item/stack/cable_coil) && !wired && anchored)
 		var/obj/item/stack/cable_coil/cable = C
 		if (cable.get_amount() < 1)
-			user << "<span class='warning'>You need one length of coil to wire \the [src].</span>"
+			user << SPAN_WARN("You need one length of coil to wire \the [src].")
 			return
 		user.visible_message("[user] wires \the [src].", "You start to wire \the [src].")
 		if(do_after(user, 40) && !wired && anchored)
@@ -28,7 +28,10 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 
 	else if(istype(C, /obj/item/weapon/wirecutters) && wired )
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
+		user.visible_message(
+			"[user] cuts the wires from \the [src].",
+			"You start to cut the wires from \the [src]."
+		)
 
 		if(do_after(user, 40))
 			if(!src) return
@@ -39,28 +42,36 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 	else if(istype(C, /obj/item/weapon/airalarm_electronics) && wired)
 		if(anchored)
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			user.visible_message("<span class='warning'>[user] has inserted a circuit into \the [src]!</span>",
-								  "You have inserted the circuit into \the [src]!")
+			user.visible_message(
+				SPAN_WARN("[user] has inserted a circuit into \the [src]!"),
+				"You have inserted the circuit into \the [src]!"
+			)
 			new /obj/machinery/door/firedoor(src.loc)
 			qdel(C)
 			qdel(src)
 		else
-			user << "<span class='warning'>You must secure \the [src] first!</span>"
+			user << SPAN_WARN("You must secure \the [src] first!")
 	else if(istype(C, /obj/item/weapon/wrench))
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
-							  "You have [anchored ? "" : "un" ]secured \the [src]!")
+		user.visible_message(
+			SPAN_WARN("[user] has [anchored ? "" : "un" ]secured \the [src]!"),
+			"You have [anchored ? "" : "un" ]secured \the [src]!"
+		)
 		update_icon()
 	else if(!anchored && istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			user.visible_message("<span class='warning'>[user] dissassembles \the [src].</span>",
-			"You start to dissassemble \the [src].")
+			user.visible_message(
+				SPAN_WARN("[user] dissassembles \the [src]."),
+				"You start to dissassemble \the [src]."
+			)
 			if(do_after(user, 40))
 				if(!src || !WT.isOn()) return
-				user.visible_message("<span class='warning'>[user] has dissassembled \the [src].</span>",
-									"You have dissassembled \the [src].")
+				user.visible_message(
+					SPAN_WARN("[user] has dissassembled \the [src]."),
+					"You have dissassembled \the [src]."
+				)
 				new /obj/item/stack/material/steel(src.loc, 2)
 				qdel(src)
 		else

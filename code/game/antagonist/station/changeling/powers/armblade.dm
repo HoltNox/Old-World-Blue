@@ -24,8 +24,8 @@
 */
 	if(changeling_generic_weapon(/obj/item/weapon/melee/arm_blade))
 		visible_message(
-			"<span class='warning'>A grotesque blade forms around [src]\'s arm!</span>",
-			"<span class='warning'>Our arm twists and mutates, transforming it into a deadly blade.</span>",
+			SPAN_WARN("A grotesque blade forms around [src]\'s arm!"),
+			SPAN_WARN("Our arm twists and mutates, transforming it into a deadly blade."),
 			"<span class='italics'>You hear organic matter ripping and tearing!</span>"
 		)
 		return 1
@@ -61,7 +61,7 @@
 
 /obj/item/weapon/melee/arm_blade/dropped(var/mob/user)
 	user.visible_message(
-		"<span class='warning'>With a sickening crunch, [user] reforms their arm blade into an arm!</span>",
+		SPAN_WARN("With a sickening crunch, [user] reforms their arm blade into an arm!"),
 		"<span class='notice'>We assimilate the weapon back into our body.</span>",
 		"<span class='italics'>You hear organic matter ripping and tearing!</span>"
 	)

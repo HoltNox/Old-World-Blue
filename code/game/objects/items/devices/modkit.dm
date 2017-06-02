@@ -22,7 +22,7 @@
 		return	//it shouldn't be null, okay?
 
 	if(!parts)
-		user << "<span class='warning'>This kit has no parts for this modification left.</span>"
+		user << SPAN_WARN("This kit has no parts for this modification left.")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
@@ -44,7 +44,7 @@
 		return
 
 	if(!isturf(O.loc))
-		user << "<span class='warning'>[O] must be safely placed on the ground for modification.</span>"
+		user << SPAN_WARN("[O] must be safely placed on the ground for modification.")
 		return
 
 	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)

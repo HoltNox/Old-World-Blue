@@ -115,8 +115,11 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/glass/drinks) || istype(O,/obj/item/weapon/reagent_containers/condiment))
-		return 1
+	var/list/allowed = list(
+		/obj/item/weapon/reagent_containers/glass,
+		/obj/item/weapon/reagent_containers/condiment
+	)
+	return is_type_in_list(O, allowed)
 
 /obj/machinery/smartfridge/drying_rack
 	name = "\improper Drying Rack"
@@ -181,7 +184,10 @@
 /obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/screwdriver))
 		panel_open = !panel_open
-		user.visible_message("[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].", "You [panel_open ? "open" : "close"] the maintenance panel of \the [src].")
+		user.visible_message(
+			"[user] [panel_open ? "opens" : "closes"] the maintenance panel of \the [src].",
+			"You [panel_open ? "open" : "close"] the maintenance panel of \the [src]."
+		)
 		overlays.Cut()
 		if(panel_open)
 			overlays += image(icon, icon_panel)
@@ -208,7 +214,10 @@
 				item_quants[O.name]++
 			else
 				item_quants[O.name] = 1
-			user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
+			user.visible_message(
+				"<span class='notice'>[user] has added \the [O] to \the [src].</span>",
+				"<span class='notice'>You add \the [O] to \the [src].</span>"
+			)
 
 			nanomanager.update_uis(src)
 
@@ -229,7 +238,10 @@
 					plants_loaded++
 		if(plants_loaded)
 
-			user.visible_message("<span class='notice'>[user] loads \the [src] with \the [P].</span>", "<span class='notice'>You load \the [src] with \the [P].</span>")
+			user.visible_message(
+				"<span class='notice'>[user] loads \the [src] with \the [P].</span>",
+				"<span class='notice'>You load \the [src] with \the [P].</span>"
+			)
 			if(P.contents.len > 0)
 				user << "<span class='notice'>Some items are refused.</span>"
 
@@ -341,7 +353,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
+	src.visible_message(SPAN_WARN("[src] launches [throw_item.name] at [target.name]!"))
 	return 1
 
 /************************
@@ -352,6 +364,6 @@
 	if(stat & (NOPOWER|BROKEN)) return 0
 	if(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
 		if(!allowed(usr) && !emagged && locked != -1 && href_list["vend"])
-			usr << "<span class='warning'>Access denied.</span>"
+			usr << SPAN_WARN("Access denied.")
 			return 0
 	return ..()

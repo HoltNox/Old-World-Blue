@@ -194,7 +194,7 @@
 		emagged = 1
 		if(locked)
 			locked = 0
-			user << "<span class='warning'>You bypass [src]'s controls.</span>"
+			user << SPAN_WARN("You bypass [src]'s controls.")
 		return 1
 
 /obj/vehicle/proc/explode()

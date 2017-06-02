@@ -278,7 +278,7 @@ proc/get_radio_key_from_channel(var/channel)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !(language.flags & INNATE))
 			if(speaker == src)
-				src << "<span class='warning'>You cannot hear yourself speak!</span>"
+				src << SPAN_WARN("You cannot hear yourself speak!")
 			else
 				src << "<span class='name'>[speaker.name]</span>[alt_name] talks but you cannot hear \him."
 			return
@@ -324,7 +324,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities & DEAF || ear_deaf)
 		if(prob(20))
-			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
+			src << SPAN_WARN("You feel your headset vibrate but can hear nothing from it!")
 		return
 
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping

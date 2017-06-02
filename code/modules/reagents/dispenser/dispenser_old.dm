@@ -97,15 +97,21 @@
 	.=..()
 	if(.<=2)
 		if (modded)
-			user << "<span class='warning'>Fuel faucet is wrenched open, leaking the fuel!</span>"
+			user << SPAN_WARN("Fuel faucet is wrenched open, leaking the fuel!")
 		if(rig)
 			user << "<span class='notice'>There is some kind of device rigged to the tank.</span>"
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
-		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
+		usr.visible_message(
+			"[usr] begins to detach [rig] from \the [src].",
+			"You begin to detach [rig] from \the [src]"
+		)
 		if(do_after(usr, 20))
-			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src]</span>")
+			usr.visible_message(
+				"<span class='notice'>[usr] detaches [rig] from \the [src].</span>",
+				"<span class='notice'>You detach [rig] from \the [src]</span>"
+			)
 			rig.loc = get_turf(usr)
 			rig = null
 			overlays = new/list()
@@ -113,19 +119,27 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if (istype(W,/obj/item/weapon/wrench))
-		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
-			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
+		user.visible_message(
+			"[user] wrenches [src]'s faucet [modded ? "closed" : "open"].",
+			"You wrench [src]'s faucet [modded ? "closed" : "open"]"
+		)
 		modded = modded ? 0 : 1
 		if (modded)
 			log_game("[key_name(user)] opened fueltank at [loc.loc.name], leaking fuel.", src)
 			leak_fuel(amount_per_transfer_from_this)
 	if (istype(W,/obj/item/device/assembly_holder))
 		if (rig)
-			user << "<span class='warning'>There is another device in the way.</span>"
+			user << SPAN_WARN("There is another device in the way.")
 			return ..()
-		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
+		user.visible_message(
+			"[user] begins rigging [W] to \the [src].",
+			"You begin rigging [W] to \the [src]"
+		)
 		if(do_after(user, 20))
-			user.visible_message("<span class='notice'>[user] rigs [W] to \the [src].</span>", "<span class='notice'>You rig [W] to \the [src]</span>")
+			user.visible_message(
+				"<span class='notice'>[user] rigs [W] to \the [src].</span>",
+				"<span class='notice'>You rig [W] to \the [src]</span>"
+			)
 
 			var/obj/item/device/assembly_holder/H = W
 			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))

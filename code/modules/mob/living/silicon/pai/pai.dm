@@ -373,7 +373,7 @@
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message("<span class='warning'>[user.name] bonks [src] harmlessly with [W].</span>")
+		visible_message(SPAN_WARN("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return
@@ -415,9 +415,9 @@
 		if(O.w_class == 1)
 			..()
 		else
-			src << "<span class='warning'>You are too small to pull that.</span>"
+			src << SPAN_WARN("You are too small to pull that.")
 	else
-		src << "<span class='warning'>You are too small to pull that.</span>"
+		src << SPAN_WARN("You are too small to pull that.")
 		return
 
 // No binary for pAIs.

@@ -15,29 +15,29 @@
 
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
-		src << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		src << SPAN_WARN("We must be grabbing a creature in our active hand to absorb them.")
 		return
 
 	var/mob/living/carbon/human/T = G.affecting
 	if(!istype(T) || T.isSynthetic())
-		src << "<span class='warning'>\The [T] is not compatible with our biology.</span>"
+		src << SPAN_WARN("\The [T] is not compatible with our biology.")
 		return
 
 	if(T.species.flags & NO_SCAN)
-		src << "<span class='warning'>We do not know how to parse this creature's DNA!</span>"
+		src << SPAN_WARN("We do not know how to parse this creature's DNA!")
 		return
 
 	if(HUSK & status_flags) //Lings can always absorb other lings, unless someone beat them to it first.
 		if(!T.mind.changeling || T.mind.changeling && T.mind.changeling.geneticpoints < 0)
-			src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
+			src << SPAN_WARN("This creature's DNA is ruined beyond useability!")
 			return
 
 	if(G.state != GRAB_KILL)
-		src << "<span class='warning'>We must have a tighter grip to absorb this creature.</span>"
+		src << SPAN_WARN("We must have a tighter grip to absorb this creature.")
 		return
 
 	if(changeling.isabsorbing)
-		src << "<span class='warning'>We are already absorbing!</span>"
+		src << SPAN_WARN("We are already absorbing!")
 		return
 
 	changeling.isabsorbing = 1
@@ -46,8 +46,10 @@
 			if(1)
 				src << "<span class='notice'>This creature is compatible. We must hold still...</span>"
 			if(2)
-				src.visible_message("<span class='warning'>[src] extends a proboscis!</span>",\
-				"<span class='notice'>We extend a proboscis.</span>")
+				src.visible_message(
+					SPAN_WARN("[src] extends a proboscis!"),
+					"<span class='notice'>We extend a proboscis.</span>"
+				)
 			if(3)
 				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>",\
 				"<span class='notice'>We stab [T] with the proboscis.</span>")
@@ -60,7 +62,7 @@
 					T:UpdateDamageIcon()
 
 		if(!do_mob(src, T, 150))
-			src << "<span class='warning'>Our absorption of [T] has been interrupted!</span>"
+			src << SPAN_WARN("Our absorption of [T] has been interrupted!")
 			changeling.isabsorbing = 0
 			return
 

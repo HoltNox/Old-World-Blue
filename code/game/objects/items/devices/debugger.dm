@@ -24,7 +24,7 @@
 	if(istype(O, /obj/machinery/door) && (D.p_open))
 		if(mode == 1)
 			if(D.operating == -1)
-				user << "<span class='warning'>There is a software error with the device.</span>"
+				user << SPAN_WARN("There is a software error with the device.")
 			else
 				user << "<span class='notice'>The device's software appears to be fine.</span>"
 		else if (mode == 2)

@@ -61,7 +61,7 @@
 					user << "<span class='notice'>You add wires to the assembly.</span>"
 					state = 3
 				else
-					user << "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>"
+					user << SPAN_WARN("You need 2 coils of wire to wire the assembly.")
 				return
 
 			else if(iswelder(W))

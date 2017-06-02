@@ -48,8 +48,10 @@
 
 
 		H.invisibility = initial(invisibility)
-		visible_message("<span class='warning'>[src] suddenly fades in, seemingly from nowhere!</span>",
-		"<span class='notice'>We revert our camouflage, revealing ourselves.</span>")
+		visible_message(
+			SPAN_WARN("[src] suddenly fades in, seemingly from nowhere!"),
+			"<span class='notice'>We revert our camouflage, revealing ourselves.</span>"
+		)
 		H.set_m_intent("run")
 		H.mind.changeling.cloaked = 0
 		H.mind.changeling.chem_recharge_rate = old_regen_rate

@@ -508,7 +508,7 @@ var/global/list/robot_emotes_list = list()
 			switch(t1)
 				if (1 to 5)
 					if((H.r_hand || !H.get_organ(BP_R_HAND)) && (H.l_hand  || !H.get_organ(BP_L_HAND)))
-						H << "<span class='warning'>Your need at least one free hand for this</span>"
+						H << SPAN_WARN("Your need at least one free hand for this")
 						return
 					if(!russified)
 						return H.custom_emote(m_type, "raises [t1] finger\s.")
@@ -521,7 +521,7 @@ var/global/list/robot_emotes_list = list()
 						return H.custom_emote(m_type, emote)
 				if (6 to 10)
 					if((H.r_hand || !H.get_organ(BP_R_HAND)) || (H.l_hand  || !H.get_organ(BP_L_HAND)))
-						H << "<span class='warning'>Your need at least two free hands for this</span>"
+						H << SPAN_WARN("Your need at least two free hands for this")
 						return
 					if(russified)
 						return H.custom_emote(m_type, "поднимает [t1] пальцев.")

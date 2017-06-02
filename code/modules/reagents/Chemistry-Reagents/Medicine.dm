@@ -478,7 +478,7 @@
 		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << "<span class='warning'>You lose focus...</span>"
+		M << SPAN_WARN("You lose focus...")
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
@@ -499,7 +499,7 @@
 		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << "<span class='warning'>Your mind feels a little less stable...</span>"
+		M << SPAN_WARN("Your mind feels a little less stable...")
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
@@ -519,14 +519,14 @@
 		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << "<span class='warning'>Your mind feels much less stable...</span>"
+		M << SPAN_WARN("Your mind feels much less stable...")
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
 				M << "<span class='notice'>Your mind feels much more stable.</span>"
 			else
-				M << "<span class='warning'>Your mind breaks apart...</span>"
+				M << SPAN_WARN("Your mind breaks apart...")
 				M.hallucination += 200
 
 /datum/reagent/rezadone

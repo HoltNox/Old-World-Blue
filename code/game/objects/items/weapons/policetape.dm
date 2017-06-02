@@ -151,7 +151,7 @@ var/list/tape_roll_applications = list()
 		var/mob/M = mover
 		add_fingerprint(M)
 		if (!allowed(M))	//only select few learn art of not crumpling the tape
-			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
+			M << SPAN_WARN("You are not supposed to go past [src]...")
 			crumple()
 	return ..(mover)
 

@@ -28,9 +28,9 @@
 		if(perc > 0.75)
 			user << "<span class='notice'>It has a few cracks.</span>"
 		else if(perc > 0.5)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
+			user << SPAN_WARN("It looks slightly damaged.")
 		else if(perc > 0.25)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
+			user << SPAN_WARN("It looks moderately damaged.")
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
 	if(silicate)

@@ -45,26 +45,35 @@ obj/item/weapon/reagent_containers/syringe/throw_impact(atom/hit_atom, var/speed
 
 /obj/item/weapon/gun/launcher/syringe/attack_self(mob/living/user as mob)
 	if(next)
-		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", "<span class='warning'>You unlatch and carefully relax the bolt on [src], unloading the spring.</span>")
+		user.visible_message(
+			"[user] unlatches and carefully relaxes the bolt on [src].",
+			SPAN_WARN("You unlatch and carefully relax the bolt on [src], unloading the spring.")
+		)
 		next = null
 	else if(darts.len)
 		playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
-		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", "<span class='warning'>You draw back the bolt on the [src], loading the spring!</span>")
+		user.visible_message(
+			"[user] draws back the bolt on [src], clicking it into place.",
+			SPAN_WARN("You draw back the bolt on the [src], loading the spring!")
+		)
 		next = darts[1]
 	add_fingerprint(user)
 
 /obj/item/weapon/gun/launcher/syringe/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(!darts.len)
-			user << "<span class='warning'>[src] is empty.</span>"
+			user << SPAN_WARN("[src] is empty.")
 			return
 		if(next)
-			user << "<span class='warning'>[src]'s cover is locked shut.</span>"
+			user << SPAN_WARN("[src]'s cover is locked shut.")
 			return
 		var/obj/item/weapon/reagent_containers/syringe/S = darts[1]
 		darts -= S
 		user.put_in_hands(S)
-		user.visible_message("[user] removes \a [S] from [src].", "<span class='notice'>You remove \a [S] from [src].</span>")
+		user.visible_message(
+			"[user] removes \a [S] from [src].",
+			"<span class='notice'>You remove \a [S] from [src].</span>"
+		)
 	else
 		..()
 
@@ -72,7 +81,7 @@ obj/item/weapon/reagent_containers/syringe/throw_impact(atom/hit_atom, var/speed
 	if(istype(A, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = A
 		if(darts.len >= max_darts)
-			user << "<span class='warning'>[src] is full!</span>"
+			user << SPAN_WARN("[src] is full!")
 			return
 		user.remove_from_mob(S)
 		S.loc = src

@@ -26,10 +26,11 @@
 				if(world.time <= buckled_mob.last_special+NEST_RESIST_TIME)
 					return
 				buckled_mob.last_special = world.time
-				buckled_mob.visible_message(\
-					"<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
-					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+				buckled_mob.visible_message(
+					SPAN_WARN("[buckled_mob.name] struggles to break free of the gelatinous resin..."),
+					SPAN_WARN("You struggle to break free from the gelatinous resin..."),
+					"<span class='notice'>You hear squelching...</span>"
+				)
 				spawn(NEST_RESIST_TIME)
 					if(user && buckled_mob && user.buckled == src)
 						buckled_mob.last_special = world.time
@@ -57,10 +58,11 @@
 	if(M == usr)
 		return
 	else
-		M.visible_message(\
-			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
-			"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
-			"<span class='notice'>You hear squelching...</span>")
+		M.visible_message(
+			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",
+			SPAN_WARN("[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!"),
+			"<span class='notice'>You hear squelching...</span>"
+		)
 	M.buckled = src
 	M.loc = src.loc
 	M.set_dir(src.dir)
@@ -76,7 +78,7 @@
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 	for(var/mob/M in viewers(src, 7))
-		M.show_message("<span class='warning'>[user] hits [src] with [W]!</span>", 1)
+		M.show_message(SPAN_WARN("[user] hits [src] with [W]!"), 1)
 	healthcheck()
 
 /obj/structure/bed/nest/proc/healthcheck()

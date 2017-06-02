@@ -41,7 +41,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species && H.species.get_bodytype() != SPECIES_VOX)
-			user << "<span class='warning'>\The [src] does not respond to you!</span>"
+			user << SPAN_WARN("\The [src] does not respond to you!")
 			return 0
 	return ..()
 

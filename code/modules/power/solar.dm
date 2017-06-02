@@ -262,7 +262,7 @@ var/list/solars_list = list()
 				else
 					new /obj/machinery/power/solar(get_turf(src), src)
 			else
-				user << "<span class='warning'>You need two sheets of glass to put them into a solar panel.</span>"
+				user << SPAN_WARN("You need two sheets of glass to put them into a solar panel.")
 				return
 			return 1
 

@@ -142,11 +142,11 @@ obj/item/weapon/gun/energy/staff/focus
 	attack_self(mob/living/user as mob)
 		if(projectile_type == /obj/item/projectile/forcebolt)
 			charge_cost = 400
-			user << "<span class='warning'>The [src.name] will now strike a small area.</span>"
+			user << SPAN_WARN("The [src.name] will now strike a small area.")
 			projectile_type = /obj/item/projectile/forcebolt/strong
 		else
 			charge_cost = 200
-			user << "<span class='warning'>The [src.name] will now strike only a single person.</span>"
+			user << SPAN_WARN("The [src.name] will now strike only a single person.")
 			projectile_type = /obj/item/projectile/forcebolt
 	*/
 

@@ -57,12 +57,12 @@ default behaviour is:
 			for(var/mob/living/M in range(1,tmob))
 				if(tmob.pinned.len || (M.pulling == tmob && (tmob.restrained() && !M.restrained() && !M.stat)) || tmob.grabbed_by.len)
 					if ( !(world.time % 5) )
-						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
+						src << SPAN_WARN("[tmob] is restrained, you cannot push past")
 					now_pushing = 0
 					return
 				if(tmob.pulling == M && (M.restrained() && !tmob.restrained() && !tmob.stat))
 					if( !(world.time % 5) )
-						src << "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>"
+						src << SPAN_WARN("[tmob] is restraining [M], you cannot push past")
 					now_pushing = 0
 					return
 
@@ -576,10 +576,10 @@ default behaviour is:
 
 	if(istype(M))
 		M.drop_from_inventory(H)
-		M << "<span class='warning'>[H] wriggles out of your grip!</span>"
-		src << "<span class='warning'>You wriggle out of [M]'s grip!</span>"
+		M << SPAN_WARN("[H] wriggles out of your grip!")
+		src << SPAN_WARN("You wriggle out of [M]'s grip!")
 	else if(istype(H.loc,/obj/item))
-		src << "<span class='warning'>You struggle free of [H.loc].</span>"
+		src << SPAN_WARN("You struggle free of [H.loc].")
 		H.forceMove(get_turf(H))
 
 	if(istype(M))
@@ -606,12 +606,12 @@ default behaviour is:
 				qdel(G)
 			if(GRAB_AGGRESSIVE)
 				if(prob(60)) //same chance of breaking the grab as disarm
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
+					visible_message(SPAN_WARN("[src] has broken free of [G.assailant]'s grip!"))
 					qdel(G)
 			if(GRAB_NECK)
 				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
 				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(3))
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
+					visible_message(SPAN_WARN("[src] has broken free of [G.assailant]'s headlock!"))
 					qdel(G)
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
@@ -641,7 +641,7 @@ default behaviour is:
 
 	var/special_fail_msg = cannot_use_vents()
 	if(special_fail_msg)
-		src << "<span class='warning'>[special_fail_msg]</span>"
+		src << SPAN_WARN("[special_fail_msg]")
 		return
 
 	if(vent_found) // one was passed in, probably from vent/AltClick()
@@ -695,7 +695,7 @@ default behaviour is:
 		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
 			if(is_allowed_vent_crawl_item(carried_item))
 				continue
-			src << "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>"
+			src << SPAN_WARN("You can't be carrying items or have items equipped when vent crawling!")
 			return
 
 	if(isslime(src))

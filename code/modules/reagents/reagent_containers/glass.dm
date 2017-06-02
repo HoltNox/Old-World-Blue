@@ -145,7 +145,7 @@
 	if(user.a_intent == I_HURT)
 		if(reagents && reagents.total_volume)
 			user.visible_message(
-				"<span class='warning'>[user.name] splashed the solution of [src] onto [target]</span>",
+				SPAN_WARN("[user.name] splashed the solution of [src] onto [target]"),
 				"<span class='notice'>You splash the solution onto [target].</span>"
 			)
 			reagents.splash(target, reagents.total_volume)

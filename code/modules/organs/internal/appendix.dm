@@ -25,12 +25,12 @@
 
 	if(inflamed == 1)
 		if(prob(5))
-			owner << "<span class='warning'>You feel a stinging pain in your abdomen!</span>"
-			owner.emote("me", 1, "winces slightly.")
+			owner << SPAN_WARN("You feel a stinging pain in your abdomen!")
+			owner.custom_emote(1, "winces slightly.")
 	if(inflamed > 1)
 		if(prob(3))
-			owner << "<span class='warning'>You feel a stabbing pain in your abdomen!</span>"
-			owner.emote("me", 1, "winces painfully.")
+			owner << SPAN_WARN("You feel a stabbing pain in your abdomen!")
+			owner.custom_emote(1, "winces painfully.")
 			owner.adjustToxLoss(1)
 	if(inflamed > 2)
 		if(prob(1))

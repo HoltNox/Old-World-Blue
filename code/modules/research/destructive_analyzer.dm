@@ -66,7 +66,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			user << "<span class='notice'>You cannot deconstruct this item!</span>"
 			return
 		if(O.reliability < min_reliability && O.crit_fail == 0)
-			usr << "<span class='warning'>Item is neither reliable enough nor broken enough to learn from.</span>"
+			usr << SPAN_WARN("Item is neither reliable enough nor broken enough to learn from.")
 			return
 		busy = 1
 		loaded_item = O

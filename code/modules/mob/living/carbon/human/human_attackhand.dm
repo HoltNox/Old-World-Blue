@@ -70,16 +70,16 @@
 		if(I_HELP)
 			if(istype(H) && health < config.health_threshold_crit && health > config.health_threshold_dead)
 				if(H.head && (H.head.body_parts_covered & FACE))
-					H << "<span class='warning'>You can't perform CPR while wearing [H.head]!</span>"
+					H << SPAN_WARN("You can't perform CPR while wearing [H.head]!")
 					return 0
 				if(H.wear_mask && (H.wear_mask.body_parts_covered & FACE) && !(H.wear_mask.item_flags & FLEXIBLEMATERIAL))
-					H << "<span class='warning'>Remove your mask!</span>"
+					H << SPAN_WARN("Remove your mask!")
 					return 0
 				if(head && (head.body_parts_covered & FACE) && !(wear_mask.item_flags & FLEXIBLEMATERIAL))
-					H << "<span class='warning'>Remove [src]'s mask!</span>"
+					H << SPAN_WARN("Remove [src]'s mask!")
 					return 0
 				if(wear_mask && (wear_mask.body_parts_covered & FACE))
-					H << "<span class='warning'>Remove [src]'s helmet!</span>"
+					H << SPAN_WARN("Remove [src]'s helmet!")
 					return 0
 
 				if (!cpr_time)
@@ -98,7 +98,7 @@
 				updatehealth()
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
 				src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
-				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
+				H << SPAN_WARN("Repeat at least every 7 seconds.")
 
 			else
 				help_shake_act(M)
@@ -125,7 +125,7 @@
 
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+			visible_message(SPAN_WARN("[M] has grabbed [src] passively!"))
 			return 1
 
 		if(I_HURT)
@@ -292,7 +292,7 @@
 				if(armor_check < 2)
 					visible_message("<span class='danger'>[M] has pushed [src]!</span>")
 				else
-					visible_message("<span class='warning'>[M] attempted to push [src]!</span>")
+					visible_message(SPAN_WARN("[M] attempted to push [src]!"))
 				return
 
 			if(randn <= 60)
@@ -372,7 +372,7 @@
 	if(!organ || organ.is_dislocated() || organ.dislocated == -1)
 		return 0
 
-	user.visible_message("<span class='warning'>[user] begins to dislocate [src]'s [organ.joint]!</span>")
+	user.visible_message(SPAN_WARN("[user] begins to dislocate [src]'s [organ.joint]!"))
 	if(do_after(user, 100))
 		organ.dislocate(1)
 		src.visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")

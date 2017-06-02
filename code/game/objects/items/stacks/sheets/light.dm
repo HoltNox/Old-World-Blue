@@ -29,5 +29,5 @@
 			new/obj/item/stack/tile/light(get_turf(user))
 			user << "<span class='notice'>You make a light tile.</span>"
 		else
-			user << "<span class='warning'>You need one metal sheet to finish the light tile.</span>"
+			user << SPAN_WARN("You need one metal sheet to finish the light tile.")
 		return

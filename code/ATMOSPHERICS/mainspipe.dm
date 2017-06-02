@@ -647,7 +647,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		attack_hand(mob/user as mob)
 			if(!src.allowed(user))
-				user << "<span class='warning'>Access denied.</span>"
+				user << SPAN_WARN("Access denied.")
 				return
 			..()
 
